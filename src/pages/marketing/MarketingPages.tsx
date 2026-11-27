@@ -26,7 +26,7 @@ export const HomepageContentPage: React.FC<{ section?: 'homepage' | 'featured_co
     <PermissionGuard module="marketing" action="view">
       <div className="space-y-6 max-w-4xl">
         <div>
-          <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">
+          <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">
             {t.pages.marketing[section]}
           </h1>
           <p className="text-[14.5px] text-[#475569] mt-1">
@@ -35,15 +35,15 @@ export const HomepageContentPage: React.FC<{ section?: 'homepage' | 'featured_co
         </div>
 
         {savedNotice && (
-          <div className="p-3 rounded-[8px] bg-[#F0FDF4] border border-[#BBF7D0] text-[#15803D] text-[13px] font-medium">
+          <div className="p-3 rounded-xl bg-[#e4ede7] border border-[#BBF7D0] text-[#15463a] text-[13px] font-medium">
             Marketing configuration saved and synced to Public Web API.
           </div>
         )}
 
         {(section === 'homepage' || section === 'banners') && (
-          <form onSubmit={saveHomepage} className="bg-white rounded-[12px] border border-[#E5E7EB] p-5 space-y-4">
+          <form onSubmit={saveHomepage} className="card-note p-5 space-y-4">
             <h2 className="text-[16px] font-semibold flex items-center gap-2">
-              <LayoutTemplate className="h-4.5 w-4.5 text-[#2563EB]" />
+              <LayoutTemplate className="h-4.5 w-4.5 text-[#1c5b48]" />
               Hero & Promotional Banner
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -84,12 +84,12 @@ export const HomepageContentPage: React.FC<{ section?: 'homepage' | 'featured_co
         )}
 
         {(section === 'featured_courses' || section === 'homepage') && (
-          <div className="bg-white rounded-[12px] border border-[#E5E7EB] p-5 space-y-3">
+          <div className="card-note p-5 space-y-3">
             <h2 className="text-[16px] font-semibold">Featured Courses on Homepage</h2>
-            <div className="divide-y divide-[#E5E7EB]">
+            <div className="divide-y divide-[#ded8ca]">
               {courses.map((c) => (
                 <div key={c.id} className="py-2.5 flex items-center justify-between gap-3 text-[13px]">
-                  <span className="font-medium text-[#1F2937]">{c.title.en}</span>
+                  <span className="font-medium text-[#141312]">{c.title.en}</span>
                   <Button
                     size="sm"
                     variant={c.featured ? 'primary' : 'outline'}
@@ -107,12 +107,12 @@ export const HomepageContentPage: React.FC<{ section?: 'homepage' | 'featured_co
         )}
 
         {(section === 'featured_videos' || section === 'homepage') && (
-          <div className="bg-white rounded-[12px] border border-[#E5E7EB] p-5 space-y-3">
+          <div className="card-note p-5 space-y-3">
             <h2 className="text-[16px] font-semibold">Featured Training Videos</h2>
-            <div className="divide-y divide-[#E5E7EB]">
+            <div className="divide-y divide-[#ded8ca]">
               {videos.map((v) => (
                 <div key={v.id} className="py-2.5 flex items-center justify-between gap-3 text-[13px]">
-                  <span className="font-medium text-[#1F2937]">{v.title.en}</span>
+                  <span className="font-medium text-[#141312]">{v.title.en}</span>
                   <Button
                     size="sm"
                     variant={v.featured ? 'primary' : 'outline'}
@@ -130,16 +130,16 @@ export const HomepageContentPage: React.FC<{ section?: 'homepage' | 'featured_co
         )}
 
         {(section === 'testimonials' || section === 'homepage') && (
-          <div className="bg-white rounded-[12px] border border-[#E5E7EB] p-5 space-y-3">
+          <div className="card-note p-5 space-y-3">
             <h2 className="text-[16px] font-semibold flex items-center gap-2">
-              <Star className="h-4.5 w-4.5 text-[#D97706]" />
+              <Star className="h-4.5 w-4.5 text-[#8a5008]" />
               Published Testimonials
             </h2>
             {testimonials.map((tst) => (
-              <div key={tst.id} className="p-3 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] flex items-center justify-between gap-3 text-[13px]">
+              <div key={tst.id} className="p-3 rounded-lg bg-[#f6f3ec] border border-[#ded8ca] flex items-center justify-between gap-3 text-[13px]">
                 <div>
                   <p className="font-semibold">{tst.authorName} · {tst.role}</p>
-                  <p className="text-[#4B5563]">"{tst.quote.en}"</p>
+                  <p className="text-[#4c4842]">"{tst.quote.en}"</p>
                 </div>
                 <Button
                   size="sm"
@@ -173,11 +173,11 @@ export const SeoManagementPage: React.FC = () => {
     <PermissionGuard module="seo" action="view">
       <div className="space-y-5 max-w-4xl">
         <div>
-          <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.seo.title}</h1>
+          <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.seo.title}</h1>
           <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.seo.subtitle}</p>
         </div>
 
-        <div className="bg-white rounded-[12px] border border-[#E5E7EB] p-5 flex flex-wrap items-center justify-between gap-4">
+        <div className="card-note p-5 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4 text-[13px]">
             <label className="flex items-center gap-2">
               <input type="checkbox" checked={sitemapEnabled} onChange={(e) => setSitemapEnabled(e.target.checked)} />
@@ -193,10 +193,10 @@ export const SeoManagementPage: React.FC = () => {
 
         <div className="space-y-3">
           {courses.map((c) => (
-            <div key={c.id} className="bg-white rounded-[12px] border border-[#E5E7EB] p-4 space-y-2.5">
+            <div key={c.id} className="card-note p-4 space-y-2.5">
               <div className="flex items-center justify-between">
                 <span className="font-semibold text-[14px] flex items-center gap-1.5">
-                  <Tag className="h-4 w-4 text-[#2563EB]" />
+                  <Tag className="h-4 w-4 text-[#1c5b48]" />
                   /{c.slug}
                 </span>
                 {can('seo', 'edit') && (
@@ -246,15 +246,15 @@ export const TranslationsPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight flex items-center gap-2">
-              <Languages className="h-5 w-5 text-[#2563EB]" />
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15] flex items-center gap-2">
+              <Languages className="h-5 w-5 text-[#1c5b48]" />
               {t.pages.translations.title}
             </h1>
             <p className="text-[14.5px] text-[#475569] mt-1">
               {t.pages.translations.subtitle}
             </p>
           </div>
-          <label className="flex items-center gap-2 text-[13px] font-medium bg-white px-3 py-2 rounded-[8px] border border-[#E5E7EB] cursor-pointer">
+          <label className="flex items-center gap-2 text-[13px] font-medium bg-[#efebe1] px-3 py-2 rounded-xl border border-[#ded8ca] cursor-pointer">
             <input type="checkbox" checked={filterMissing} onChange={(e) => setFilterMissing(e.target.checked)} />
             Show missing Khmer translations only
           </label>
@@ -264,9 +264,9 @@ export const TranslationsPage: React.FC = () => {
           {courseItems.map((c) => {
             const hasKm = Boolean(c.title.km && c.title.km.trim().length > 0);
             return (
-              <div key={c.id} className="bg-white rounded-[12px] border border-[#E5E7EB] p-4 space-y-3">
+              <div key={c.id} className="card-note p-4 space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-[14px] text-[#1F2937]">{c.title.en}</span>
+                  <span className="font-semibold text-[14px] text-[#141312]">{c.title.en}</span>
                   <Badge tone={hasKm ? 'success' : 'warning'}>
                     {hasKm ? (
                       <>
@@ -313,11 +313,11 @@ export const TranslationsPage: React.FC = () => {
             );
           })}
 
-          <div className="bg-white rounded-[12px] border border-[#E5E7EB] p-4 space-y-3">
+          <div className="card-note p-4 space-y-3">
             <h2 className="text-[15px] font-semibold">Category Translations</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {categories.map((cat) => (
-                <div key={cat.id} className="p-3 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] space-y-2">
+                <div key={cat.id} className="p-3 rounded-lg bg-[#f6f3ec] border border-[#ded8ca] space-y-2">
                   <div className="flex justify-between text-[12px]">
                     <span className="font-semibold">{cat.name.en}</span>
                     <Badge tone={cat.name.km ? 'success' : 'warning'}>{cat.name.km ? 'KM Ready' : 'Missing KM'}</Badge>

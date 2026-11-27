@@ -25,7 +25,7 @@ export const AnalyticsReportsPage: React.FC<{
       <div className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">
               {t.pages.analytics[tab]}
             </h1>
             <p className="text-[14.5px] text-[#475569] mt-1">
@@ -94,7 +94,7 @@ export const AnalyticsReportsPage: React.FC<{
                 label: c.title.en,
                 value: c.completionRate,
                 displayValue: `${c.completionRate}% (${c.enrollmentsCount.toLocaleString()})`,
-                color: '#16A34A',
+                color: '#1c5b48',
               }))}
           />
         </div>

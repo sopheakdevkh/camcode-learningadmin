@@ -48,7 +48,7 @@ export const MembershipPlansPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.plans.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.plans.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.plans.subtitle}</p>
           </div>
           {can('plans', 'create') && (
@@ -60,17 +60,17 @@ export const MembershipPlansPage: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {plans.map((p) => (
-            <div key={p.id} className="bg-white rounded-[12px] border border-[#E5E7EB] p-5 flex flex-col justify-between gap-4">
+            <div key={p.id} className="card-note p-5 flex flex-col justify-between gap-4">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-[17px] font-bold text-[#1F2937]">{p.name.en}</h2>
+                  <h2 className="font-serif-display text-[20px] font-normal text-[#141312] tracking-[-0.015em]">{p.name.en}</h2>
                   <Badge tone={p.published ? 'success' : 'neutral'}>{p.published ? 'Published' : 'Hidden'}</Badge>
                 </div>
-                <p className="text-[13px] text-[#6B7280]">{p.description.en}</p>
-                <p className="text-[24px] font-extrabold text-[#1F2937]">
-                  ${p.monthlyPrice} <span className="text-[13px] font-normal text-[#6B7280]">/mo · ${p.yearlyPrice}/yr</span>
+                <p className="text-[13px] text-[#6e6a62]">{p.description.en}</p>
+                <p className="text-[24px] font-extrabold text-[#141312]">
+                  ${p.monthlyPrice} <span className="text-[13px] font-normal text-[#6e6a62]">/mo · ${p.yearlyPrice}/yr</span>
                 </p>
-                <div className="text-[12px] text-[#4B5563] space-y-1 pt-2 border-t border-[#E5E7EB]">
+                <div className="text-[12px] text-[#4c4842] space-y-1 pt-2 border-t border-[#ded8ca]">
                   <p><strong>Trial:</strong> {p.trialDays} days</p>
                   <p><strong>Courses:</strong> {p.courseAccessRule}</p>
                   <p><strong>Videos:</strong> {p.videoAccessRule}</p>
@@ -150,7 +150,7 @@ export const CouponsPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.coupons.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.coupons.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.coupons.subtitle}</p>
           </div>
           {can('coupons', 'create') && (
@@ -170,7 +170,7 @@ export const CouponsPage: React.FC = () => {
               key: 'code',
               header: 'Coupon Code',
               render: (c) => (
-                <span className="inline-flex items-center gap-1.5 font-mono-custom font-bold text-[#2563EB]">
+                <span className="inline-flex items-center gap-1.5 font-mono-tech font-bold text-[#1c5b48]">
                   <Percent className="h-3.5 w-3.5" />
                   {c.code}
                 </span>
@@ -198,7 +198,7 @@ export const CouponsPage: React.FC = () => {
             <div className="grid grid-cols-3 gap-3">
               <div>
                 <label className="block text-[12.5px] font-medium mb-1">Type</label>
-                <select value={discountType} onChange={(e) => setDiscountType(e.target.value as 'percent' | 'fixed')} className="w-full h-9 px-2 rounded-[8px] border border-[#E5E7EB] text-[13px]">
+                <select value={discountType} onChange={(e) => setDiscountType(e.target.value as 'percent' | 'fixed')} className="w-full h-9 px-2 rounded-xl border border-[#ded8ca] text-[13px]">
                   <option value="percent">Percentage (%)</option>
                   <option value="fixed">Fixed ($)</option>
                 </select>
@@ -226,7 +226,7 @@ export const InvoicesPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.invoices.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.invoices.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.invoices.subtitle}</p>
           </div>
           <Button size="sm" variant="outline" onClick={() => window.print()} leftIcon={<Printer className="h-4 w-4" />}>
@@ -239,7 +239,7 @@ export const InvoicesPage: React.FC = () => {
           searchPlaceholder="Search invoice or member..."
           searchFilter={(i, q) => i.invoiceNumber.toLowerCase().includes(q) || i.memberName.toLowerCase().includes(q)}
           columns={[
-            { key: 'inv', header: 'Invoice #', render: (i) => <span className="font-mono-custom font-semibold">{i.invoiceNumber}</span> },
+            { key: 'inv', header: 'Invoice #', render: (i) => <span className="font-mono-tech font-semibold">{i.invoiceNumber}</span> },
             { key: 'ord', header: 'Order #', render: (i) => i.orderNumber },
             { key: 'member', header: 'Member', render: (i) => i.memberName },
             { key: 'amount', header: 'Amount', render: (i) => `$${i.amount.toFixed(2)}` },
@@ -268,7 +268,7 @@ export const RefundsPage: React.FC = () => {
     <PermissionGuard module="refunds" action="view">
       <div className="space-y-5">
         <div>
-          <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.refunds.title}</h1>
+          <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.refunds.title}</h1>
           <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.refunds.subtitle}</p>
         </div>
 
@@ -278,7 +278,7 @@ export const RefundsPage: React.FC = () => {
           searchPlaceholder="Search order or member..."
           searchFilter={(r, q) => r.orderNumber.toLowerCase().includes(q) || r.memberName.toLowerCase().includes(q)}
           columns={[
-            { key: 'ord', header: 'Order #', render: (r) => <span className="font-mono-custom font-semibold">{r.orderNumber}</span> },
+            { key: 'ord', header: 'Order #', render: (r) => <span className="font-mono-tech font-semibold">{r.orderNumber}</span> },
             { key: 'member', header: 'Member', render: (r) => r.memberName },
             { key: 'amount', header: 'Amount', render: (r) => `$${r.amount.toFixed(2)}` },
             { key: 'reason', header: 'Reason', render: (r) => r.reason },

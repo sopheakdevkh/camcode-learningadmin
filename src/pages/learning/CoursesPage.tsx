@@ -175,7 +175,7 @@ export const CoursesPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.courses.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.courses.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">
               {t.pages.courses.subtitle}
             </p>
@@ -232,12 +232,12 @@ export const CoursesPage: React.FC = () => {
               header: 'Course',
               render: (c) => (
                 <div className="flex items-center gap-3 min-w-[220px]">
-                  <div className="h-10 w-14 rounded-md bg-gradient-to-br from-blue-100 to-indigo-100 border border-blue-200 flex items-center justify-center text-[10px] font-bold text-[#2563EB] shrink-0">
+                  <div className="h-10 w-14 rounded-md bg-gradient-to-br from-blue-100 to-indigo-100 border border-blue-200 flex items-center justify-center text-[10px] font-bold text-[#1c5b48] shrink-0">
                     {c.durationHours}H
                   </div>
                   <div>
-                    <p className="font-semibold text-[#1F2937]">{c.title.en}</p>
-                    <p className="text-[11.5px] text-[#6B7280] font-mono-custom">/{c.slug}</p>
+                    <p className="font-semibold text-[#141312]">{c.title.en}</p>
+                    <p className="text-[11.5px] text-[#6e6a62] font-mono-tech">/{c.slug}</p>
                   </div>
                 </div>
               ),
@@ -258,7 +258,7 @@ export const CoursesPage: React.FC = () => {
               render: (c) => (
                 <div>
                   <span className="font-semibold">{c.price === 0 ? 'Free' : `$${c.price}`}</span>
-                  <p className="text-[11px] text-[#6B7280] capitalize">{c.accessType.replace(/_/g, ' ')}</p>
+                  <p className="text-[11px] text-[#6e6a62] capitalize">{c.accessType.replace(/_/g, ' ')}</p>
                 </div>
               ),
             },
@@ -272,12 +272,12 @@ export const CoursesPage: React.FC = () => {
             {
               key: 'enrollments',
               header: 'Enrollments',
-              render: (c) => <span className="font-mono-custom">{c.enrollmentsCount.toLocaleString()}</span>,
+              render: (c) => <span className="font-mono-tech">{c.enrollmentsCount.toLocaleString()}</span>,
             },
             {
               key: 'updated',
               header: 'Last Updated',
-              render: (c) => <span className="text-[#6B7280]">{c.lastUpdated}</span>,
+              render: (c) => <span className="text-[#6e6a62]">{c.lastUpdated}</span>,
             },
             {
               key: 'actions',
@@ -289,7 +289,7 @@ export const CoursesPage: React.FC = () => {
                     type="button"
                     title="Preview"
                     onClick={() => setPreviewCourse(c)}
-                    className="p-1.5 rounded hover:bg-[#F3F4F6] text-[#4B5563] cursor-pointer"
+                    className="p-1.5 rounded hover:bg-[#e5dfd2] text-[#4c4842] cursor-pointer"
                   >
                     <Eye className="h-4 w-4" />
                   </button>
@@ -299,7 +299,7 @@ export const CoursesPage: React.FC = () => {
                         type="button"
                         title="Edit"
                         onClick={() => openEdit(c)}
-                        className="p-1.5 rounded hover:bg-[#F3F4F6] text-[#2563EB] cursor-pointer"
+                        className="p-1.5 rounded hover:bg-[#e5dfd2] text-[#1c5b48] cursor-pointer"
                       >
                         <Edit className="h-4 w-4" />
                       </button>
@@ -307,14 +307,14 @@ export const CoursesPage: React.FC = () => {
                         type="button"
                         title="Duplicate"
                         onClick={() => handleDuplicate(c)}
-                        className="p-1.5 rounded hover:bg-[#F3F4F6] text-[#4B5563] cursor-pointer"
+                        className="p-1.5 rounded hover:bg-[#e5dfd2] text-[#4c4842] cursor-pointer"
                       >
                         <Copy className="h-4 w-4" />
                       </button>
                       <button
                         type="button"
                         onClick={() => togglePublish(c)}
-                        className="px-2 py-1 rounded text-[11px] font-semibold bg-[#EFF6FF] text-[#2563EB] hover:bg-blue-100 cursor-pointer"
+                        className="px-2 py-1 rounded text-[11px] font-semibold bg-[#e4ede7] text-[#1c5b48] hover:bg-blue-100 cursor-pointer"
                       >
                         {c.status === 'published' ? 'Unpublish' : 'Publish'}
                       </button>
@@ -322,7 +322,7 @@ export const CoursesPage: React.FC = () => {
                         type="button"
                         title="Archive"
                         onClick={() => archiveCourse(c)}
-                        className="p-1.5 rounded hover:bg-[#F3F4F6] text-[#D97706] cursor-pointer"
+                        className="p-1.5 rounded hover:bg-[#e5dfd2] text-[#8a5008] cursor-pointer"
                       >
                         <Archive className="h-4 w-4" />
                       </button>
@@ -333,7 +333,7 @@ export const CoursesPage: React.FC = () => {
                       type="button"
                       title="Delete"
                       onClick={() => setDeleteTarget(c)}
-                      className="p-1.5 rounded hover:bg-[#FEF2F2] text-[#DC2626] cursor-pointer"
+                      className="p-1.5 rounded hover:bg-[#FEF2F2] text-[#a5331f] cursor-pointer"
                     >
                       <Trash2 className="h-4 w-4" />
                     </button>
@@ -358,13 +358,13 @@ export const CoursesPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-[12.5px] font-medium text-[#1F2937] mb-1">Description (EN)</label>
+              <label className="block text-[12.5px] font-medium text-[#141312] mb-1">Description (EN)</label>
               <textarea
                 rows={3}
                 value={descEn}
                 onChange={(e) => setDescEn(e.target.value)}
                 required
-                className="w-full rounded-[8px] border border-[#E5E7EB] p-2.5 text-[13px] outline-none focus:border-[#2563EB]"
+                className="w-full rounded-xl border border-[#ded8ca] p-2.5 text-[13px] outline-none focus:border-[#1c5b48]"
               />
             </div>
 
@@ -374,7 +374,7 @@ export const CoursesPage: React.FC = () => {
                 <select
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
-                  className="w-full h-9 px-2.5 rounded-[8px] border border-[#E5E7EB] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
                 >
                   {categories.map((cat) => (
                     <option key={cat.id} value={cat.id}>
@@ -388,7 +388,7 @@ export const CoursesPage: React.FC = () => {
                 <select
                   value={instructorId}
                   onChange={(e) => setInstructorId(e.target.value)}
-                  className="w-full h-9 px-2.5 rounded-[8px] border border-[#E5E7EB] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
                 >
                   {instructors.map((inst) => (
                     <option key={inst.id} value={inst.id}>
@@ -402,7 +402,7 @@ export const CoursesPage: React.FC = () => {
                 <select
                   value={difficulty}
                   onChange={(e) => setDifficulty(e.target.value as DifficultyLevel)}
-                  className="w-full h-9 px-2.5 rounded-[8px] border border-[#E5E7EB] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
                 >
                   <option value="beginner">Beginner</option>
                   <option value="intermediate">Intermediate</option>
@@ -418,7 +418,7 @@ export const CoursesPage: React.FC = () => {
                 <select
                   value={accessType}
                   onChange={(e) => setAccessType(e.target.value as AccessType)}
-                  className="w-full h-9 px-2.5 rounded-[8px] border border-[#E5E7EB] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
                 >
                   <option value="free">Free</option>
                   <option value="paid">One-time Paid</option>
@@ -432,7 +432,7 @@ export const CoursesPage: React.FC = () => {
                 <select
                   value={status}
                   onChange={(e) => setStatus(e.target.value as CourseStatus)}
-                  className="w-full h-9 px-2.5 rounded-[8px] border border-[#E5E7EB] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
                 >
                   <option value="draft">Draft</option>
                   <option value="in_review">In Review</option>
@@ -449,7 +449,7 @@ export const CoursesPage: React.FC = () => {
                   rows={3}
                   value={objectivesText}
                   onChange={(e) => setObjectivesText(e.target.value)}
-                  className="w-full rounded-[8px] border border-[#E5E7EB] p-2.5 text-[13px]"
+                  className="w-full rounded-xl border border-[#ded8ca] p-2.5 text-[13px]"
                 />
               </div>
               <div>
@@ -458,12 +458,12 @@ export const CoursesPage: React.FC = () => {
                   rows={3}
                   value={requirementsText}
                   onChange={(e) => setRequirementsText(e.target.value)}
-                  className="w-full rounded-[8px] border border-[#E5E7EB] p-2.5 text-[13px]"
+                  className="w-full rounded-xl border border-[#ded8ca] p-2.5 text-[13px]"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-[#E5E7EB]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-[#ded8ca]">
               <Input label="SEO Meta Title" value={seoTitle} onChange={(e) => setSeoTitle(e.target.value)} />
               <Input label="SEO Meta Description" value={seoDesc} onChange={(e) => setSeoDesc(e.target.value)} />
             </div>
@@ -487,14 +487,14 @@ export const CoursesPage: React.FC = () => {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <Badge tone={statusTone[previewCourse.status]}>{previewCourse.status}</Badge>
-                <span className="text-[13px] font-semibold text-[#2563EB]">
+                <span className="text-[13px] font-semibold text-[#1c5b48]">
                   {previewCourse.price === 0 ? 'Free' : `$${previewCourse.price}`}
                 </span>
               </div>
-              <h2 className="text-[20px] font-bold text-[#1F2937]">{previewCourse.title.en}</h2>
-              {previewCourse.title.km && <p className="text-[15px] text-[#4B5563]">{previewCourse.title.km}</p>}
-              <p className="text-[13.5px] text-[#4B5563]">{previewCourse.description.en}</p>
-              <div className="p-3 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] text-[12.5px] space-y-1">
+              <h2 className="font-serif-display text-[22px] font-normal text-[#141312] tracking-[-0.015em]">{previewCourse.title.en}</h2>
+              {previewCourse.title.km && <p className="text-[15px] text-[#4c4842]">{previewCourse.title.km}</p>}
+              <p className="text-[13.5px] text-[#4c4842]">{previewCourse.description.en}</p>
+              <div className="p-3 rounded-lg bg-[#f6f3ec] border border-[#ded8ca] text-[12.5px] space-y-1">
                 <p className="font-semibold">Learning Objectives:</p>
                 {previewCourse.objectives.map((o, i) => (
                   <p key={i}>• {o}</p>

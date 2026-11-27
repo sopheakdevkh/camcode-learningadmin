@@ -14,25 +14,25 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full">
         {label && (
-          <label htmlFor={inputId} className="block text-[13px] font-medium text-[#1F2937] mb-1.5">
+          <label htmlFor={inputId} className="block text-[13px] font-medium text-[#141312] mb-1.5">
             {label}
           </label>
         )}
         <input
           ref={ref}
           id={inputId}
-          className={`w-full h-[42px] px-3 rounded-[8px] border bg-white text-[14px] text-[#1F2937] placeholder:text-[#9CA3AF] outline-none transition-colors ${
+          className={`w-full h-10 px-3.5 rounded-xl border bg-[#efebe1] text-[14px] text-[#141312] placeholder:text-[#6e6a62] outline-none transition-colors ${
             error
-              ? 'border-[#DC2626] focus:ring-2 focus:ring-[#DC2626]/20'
-              : 'border-[#E5E7EB] focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15'
-          } ${className}`}
+              ? 'border-[#a5331f] focus:border-[#a5331f] focus:ring-2 focus:ring-[#a5331f]/20'
+              : 'border-[#ded8ca] hover:border-[#c2baa8] focus:border-[#1c5b48] focus:ring-2 focus:ring-[#1c5b48]/20'
+          } disabled:bg-[#e5dfd2] disabled:cursor-not-allowed ${className}`}
           {...props}
         />
-        {error && <p className="mt-1 text-[12px] text-[#DC2626]">{error}</p>}
-        {!error && helperText && <p className="mt-1 text-[12px] text-[#6B7280]">{helperText}</p>}
+        {error && <p className="mt-1 text-[12px] text-[#a5331f]">{error}</p>}
+        {!error && helperText && <p className="mt-1 text-[12px] text-[#6e6a62]">{helperText}</p>}
       </div>
     );
   },
 );
-Input.displayName = 'Input';
 
+Input.displayName = 'Input';

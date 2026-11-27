@@ -45,7 +45,7 @@ export const AnnouncementsPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.announcements.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.announcements.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.announcements.subtitle}</p>
           </div>
           {can('announcements', 'create') && (
@@ -67,7 +67,7 @@ export const AnnouncementsPage: React.FC = () => {
               render: (a) => (
                 <div>
                   <p className="font-semibold">{a.title.en}</p>
-                  <p className="text-[12px] text-[#6B7280]">{a.message.en}</p>
+                  <p className="text-[12px] text-[#6e6a62]">{a.message.en}</p>
                 </div>
               ),
             },
@@ -83,12 +83,12 @@ export const AnnouncementsPage: React.FC = () => {
             <Input label="Headline (EN)" value={titleEn} onChange={(e) => setTitleEn(e.target.value)} required />
             <div>
               <label className="block text-[12.5px] font-medium mb-1">Message Body</label>
-              <textarea rows={3} value={msgEn} onChange={(e) => setMsgEn(e.target.value)} required className="w-full rounded-[8px] border border-[#E5E7EB] p-2.5 text-[13px]" />
+              <textarea rows={3} value={msgEn} onChange={(e) => setMsgEn(e.target.value)} required className="w-full rounded-xl border border-[#ded8ca] p-2.5 text-[13px]" />
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-[12.5px] font-medium mb-1">Target Group</label>
-                <select value={audience} onChange={(e) => setAudience(e.target.value as AdminAnnouncement['audience'])} className="w-full h-9 px-2 rounded-[8px] border border-[#E5E7EB] text-[13px]">
+                <select value={audience} onChange={(e) => setAudience(e.target.value as AdminAnnouncement['audience'])} className="w-full h-9 px-2 rounded-xl border border-[#ded8ca] text-[13px]">
                   <option value="all">All Users</option>
                   <option value="free_members">Free Members</option>
                   <option value="paid_members">Paid Subscribers</option>
@@ -97,7 +97,7 @@ export const AnnouncementsPage: React.FC = () => {
               </div>
               <div>
                 <label className="block text-[12.5px] font-medium mb-1">Delivery Channel</label>
-                <select value={channel} onChange={(e) => setChannel(e.target.value as AdminAnnouncement['channel'])} className="w-full h-9 px-2 rounded-[8px] border border-[#E5E7EB] text-[13px]">
+                <select value={channel} onChange={(e) => setChannel(e.target.value as AdminAnnouncement['channel'])} className="w-full h-9 px-2 rounded-xl border border-[#ded8ca] text-[13px]">
                   <option value="both">In-App + Email</option>
                   <option value="in_app">In-App Only</option>
                   <option value="email">Email Only</option>
@@ -120,9 +120,9 @@ export const NotificationsAdminPage: React.FC = () => {
   return (
   <PermissionGuard module="notifications" action="view">
     <div className="space-y-4">
-      <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.notifications.title}</h1>
-      <div className="bg-white rounded-[12px] border border-[#E5E7EB] p-5 flex items-center gap-3 text-[13.5px] text-[#4B5563]">
-        <Bell className="h-5 w-5 text-[#2563EB]" />
+      <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.notifications.title}</h1>
+      <div className="card-note p-5 flex items-center gap-3 text-[13.5px] text-[#4c4842]">
+        <Bell className="h-5 w-5 text-[#1c5b48]" />
         <span>{t.pages.notifications.subtitle}</span>
       </div>
     </div>
@@ -141,7 +141,7 @@ export const ReviewsPage: React.FC = () => {
     <PermissionGuard module="reviews" action="view">
       <div className="space-y-5">
         <div>
-          <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.reviews.title}</h1>
+          <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.reviews.title}</h1>
           <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.reviews.subtitle}</p>
         </div>
 
@@ -160,7 +160,7 @@ export const ReviewsPage: React.FC = () => {
               render: (r) => (
                 <div className="max-w-md">
                   <p>{r.comment}</p>
-                  {r.reply && <p className="text-[12px] text-[#2563EB] mt-1">Reply: {r.reply}</p>}
+                  {r.reply && <p className="text-[12px] text-[#1c5b48] mt-1">Reply: {r.reply}</p>}
                 </div>
               ),
             },
@@ -187,7 +187,7 @@ export const ReviewsPage: React.FC = () => {
                         setReviews((prev) => prev.map((x) => (x.id === r.id ? { ...x, status: 'approved' } : x)));
                         logAudit('reviews', `Approved review by ${r.memberName}`, r.courseTitle);
                       }}
-                      className="p-1.5 rounded hover:bg-[#F0FDF4] text-[#16A34A] cursor-pointer"
+                      className="p-1.5 rounded hover:bg-[#e4ede7] text-[#1c5b48] cursor-pointer"
                     >
                       <CheckCircle2 className="h-4 w-4" />
                     </button>
@@ -197,7 +197,7 @@ export const ReviewsPage: React.FC = () => {
                       onClick={() =>
                         setReviews((prev) => prev.map((x) => (x.id === r.id ? { ...x, status: 'hidden' } : x)))
                       }
-                      className="p-1.5 rounded hover:bg-[#FEF2F2] text-[#DC2626] cursor-pointer"
+                      className="p-1.5 rounded hover:bg-[#FEF2F2] text-[#a5331f] cursor-pointer"
                     >
                       <EyeOff className="h-4 w-4" />
                     </button>
@@ -208,7 +208,7 @@ export const ReviewsPage: React.FC = () => {
                         setReplyTargetId(r.id);
                         setReplyText(r.reply ?? '');
                       }}
-                      className="p-1.5 rounded hover:bg-[#EFF6FF] text-[#2563EB] cursor-pointer"
+                      className="p-1.5 rounded hover:bg-[#e4ede7] text-[#1c5b48] cursor-pointer"
                     >
                       <MessageSquare className="h-4 w-4" />
                     </button>
@@ -225,7 +225,7 @@ export const ReviewsPage: React.FC = () => {
               value={replyText}
               onChange={(e) => setReplyText(e.target.value)}
               placeholder="Write official academy response..."
-              className="w-full rounded-[8px] border border-[#E5E7EB] p-2.5 text-[13px]"
+              className="w-full rounded-xl border border-[#ded8ca] p-2.5 text-[13px]"
             />
             <div className="flex justify-end gap-2">
               <Button variant="outline" onClick={() => setReplyTargetId(null)}>Cancel</Button>
@@ -273,7 +273,7 @@ export const SupportTicketsPage: React.FC = () => {
     <PermissionGuard module="support" action="view">
       <div className="space-y-5">
         <div>
-          <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.support.title}</h1>
+          <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.support.title}</h1>
           <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.support.subtitle}</p>
         </div>
 
@@ -287,7 +287,7 @@ export const SupportTicketsPage: React.FC = () => {
             t.memberName.toLowerCase().includes(q)
           }
           columns={[
-            { key: 'code', header: 'Ticket', render: (t) => <span className="font-mono-custom font-semibold">{t.ticketCode}</span> },
+            { key: 'code', header: 'Ticket', render: (t) => <span className="font-mono-tech font-semibold">{t.ticketCode}</span> },
             { key: 'subject', header: 'Subject', render: (t) => <span className="font-medium">{t.subject}</span> },
             { key: 'member', header: 'Member', render: (t) => t.memberName },
             {
@@ -312,7 +312,7 @@ export const SupportTicketsPage: React.FC = () => {
               header: 'Actions',
               align: 'right',
               render: (t) => (
-                <button type="button" onClick={() => setActiveTicket(t)} className="p-1.5 rounded hover:bg-[#F3F4F6] text-[#2563EB] cursor-pointer">
+                <button type="button" onClick={() => setActiveTicket(t)} className="p-1.5 rounded hover:bg-[#e5dfd2] text-[#1c5b48] cursor-pointer">
                   <Eye className="h-4 w-4" />
                 </button>
               ),
@@ -323,10 +323,10 @@ export const SupportTicketsPage: React.FC = () => {
         <Modal open={Boolean(activeTicket)} onClose={() => setActiveTicket(null)} title={`Ticket ${activeTicket?.ticketCode ?? ''}`} maxWidthClass="max-w-2xl">
           {activeTicket && (
             <div className="space-y-4 text-[13px]">
-              <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#E5E7EB]">
+              <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#ded8ca]">
                 <div>
                   <h3 className="text-[16px] font-bold">{activeTicket.subject}</h3>
-                  <p className="text-[#6B7280]">{activeTicket.memberName} ({activeTicket.memberEmail})</p>
+                  <p className="text-[#6e6a62]">{activeTicket.memberName} ({activeTicket.memberEmail})</p>
                 </div>
                 {can('support', 'edit') && (
                   <select
@@ -336,7 +336,7 @@ export const SupportTicketsPage: React.FC = () => {
                       setTickets((prev) => prev.map((x) => (x.id === activeTicket.id ? { ...x, status: next } : x)));
                       setActiveTicket((prev) => (prev ? { ...prev, status: next } : null));
                     }}
-                    className="h-8 px-2.5 rounded-md border border-[#E5E7EB]"
+                    className="h-8 px-2.5 rounded-md border border-[#ded8ca]"
                   >
                     <option value="open">Open</option>
                     <option value="in_progress">In Progress</option>
@@ -349,9 +349,9 @@ export const SupportTicketsPage: React.FC = () => {
 
               <div className="space-y-2 max-h-60 overflow-y-auto">
                 {activeTicket.messages.map((m, i) => (
-                  <div key={i} className="p-3 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB]">
-                    <p className="font-semibold text-[12px] text-[#2563EB]">{m.sender} · {m.at}</p>
-                    <p className="mt-0.5 text-[#1F2937]">{m.body}</p>
+                  <div key={i} className="p-3 rounded-lg bg-[#f6f3ec] border border-[#ded8ca]">
+                    <p className="font-semibold text-[12px] text-[#1c5b48]">{m.sender} · {m.at}</p>
+                    <p className="mt-0.5 text-[#141312]">{m.body}</p>
                   </div>
                 ))}
               </div>
@@ -363,7 +363,7 @@ export const SupportTicketsPage: React.FC = () => {
                     value={replyBody}
                     onChange={(e) => setReplyBody(e.target.value)}
                     placeholder="Write response to member..."
-                    className="flex-1 h-9 px-3 rounded-[8px] border border-[#E5E7EB]"
+                    className="flex-1 h-9 px-3 rounded-xl border border-[#ded8ca]"
                   />
                   <Button size="sm" onClick={sendReply}>Send Reply</Button>
                 </div>

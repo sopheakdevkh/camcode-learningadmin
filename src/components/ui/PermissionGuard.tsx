@@ -14,13 +14,15 @@ export const PermissionGuard: React.FC<{
 
   if (!can(module, action)) {
     return (
-      <div className="bg-white rounded-[12px] border border-[#E5E7EB] p-10 text-center max-w-lg mx-auto my-8 space-y-3">
-        <div className="mx-auto h-12 w-12 rounded-full bg-[#FEF2F2] text-[#DC2626] flex items-center justify-center">
+      <div className="card-note p-10 text-center max-w-lg mx-auto my-8 space-y-3">
+        <div className="mx-auto h-12 w-12 rounded-full bg-[#FEF2F2] text-[#a5331f] flex items-center justify-center border border-[#FECACA]">
           <ShieldAlert className="h-6 w-6" />
         </div>
-        <h2 className="text-[18px] font-bold text-[#1F2937]">{t.common.noPermission}</h2>
-        <p className="text-[13.5px] text-[#6B7280]">{t.common.noPermissionDesc}</p>
-        <p className="text-[12px] font-mono-custom text-[#6B7280]">
+        <h2 className="font-serif-display text-[22px] font-normal text-[#141312]">
+          {t.common.noPermission}
+        </h2>
+        <p className="text-[13.5px] text-[#6e6a62]">{t.common.noPermissionDesc}</p>
+        <p className="text-[12px] font-mono-tech text-[#6e6a62]">
           Role: {currentRole?.name ?? 'None'} · Required: {module}:{action}
         </p>
       </div>
