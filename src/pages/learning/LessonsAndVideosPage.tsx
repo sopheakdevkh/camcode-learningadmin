@@ -95,7 +95,7 @@ export const LessonsPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.lessons.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.lessons.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">
               {t.pages.lessons.subtitle}
             </p>
@@ -116,9 +116,9 @@ export const LessonsPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-[12px] border border-[#E5E7EB] divide-y divide-[#E5E7EB]">
+        <div className="card-note divide-y divide-[#ded8ca]">
           {courseLessons.length === 0 ? (
-            <div className="p-10 text-center text-[#6B7280] text-[14px]">
+            <div className="p-10 text-center text-[#6e6a62] text-[14px]">
               No lessons created for this course yet.
             </div>
           ) : (
@@ -129,23 +129,23 @@ export const LessonsPage: React.FC = () => {
                 onDragStart={() => setDragId(les.id)}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={() => handleDrop(les.id)}
-                className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-[#F9FAFB]"
+                className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-[#f6f3ec]"
               >
                 <div className="flex items-start gap-3 min-w-0">
-                  <GripVertical className="h-4.5 w-4.5 text-[#9CA3AF] mt-1 cursor-grab shrink-0" />
+                  <GripVertical className="h-4.5 w-4.5 text-[#6e6a62] mt-1 cursor-grab shrink-0" />
                   <div className="min-w-0">
-                    <p className="text-[11px] font-semibold uppercase text-[#6B7280]">
+                    <p className="text-[11px] font-semibold uppercase text-[#6e6a62]">
                       {les.sectionTitle.en} · #{idx + 1}
                     </p>
-                    <p className="text-[14px] font-semibold text-[#1F2937]">{les.title.en}</p>
-                    <div className="flex flex-wrap items-center gap-2 mt-1 text-[12px] text-[#6B7280]">
+                    <p className="text-[14px] font-semibold text-[#141312]">{les.title.en}</p>
+                    <div className="flex flex-wrap items-center gap-2 mt-1 text-[12px] text-[#6e6a62]">
                       <Badge tone="neutral">{les.type}</Badge>
                       <span>{les.durationMinutes} min</span>
                       <span>Rule: {les.availabilityRule}</span>
                       {les.isPreview && <Badge tone="info">Free Preview</Badge>}
                       {les.requiredCompletion && <Badge tone="primary">Required</Badge>}
                       {les.attachmentName && (
-                        <span className="inline-flex items-center gap-1 text-[#2563EB]">
+                        <span className="inline-flex items-center gap-1 text-[#1c5b48]">
                           <Paperclip className="h-3 w-3" />
                           {les.attachmentName}
                         </span>
@@ -158,7 +158,7 @@ export const LessonsPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setPreviewLesson(les)}
-                    className="p-1.5 rounded hover:bg-[#F3F4F6] text-[#4B5563] cursor-pointer"
+                    className="p-1.5 rounded hover:bg-[#e5dfd2] text-[#4c4842] cursor-pointer"
                     title="Preview lesson"
                   >
                     <Eye className="h-4 w-4" />
@@ -168,14 +168,14 @@ export const LessonsPage: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => moveLesson(les.id, -1)}
-                        className="p-1.5 rounded hover:bg-[#F3F4F6] text-[#4B5563] cursor-pointer"
+                        className="p-1.5 rounded hover:bg-[#e5dfd2] text-[#4c4842] cursor-pointer"
                       >
                         <ArrowUp className="h-4 w-4" />
                       </button>
                       <button
                         type="button"
                         onClick={() => moveLesson(les.id, 1)}
-                        className="p-1.5 rounded hover:bg-[#F3F4F6] text-[#4B5563] cursor-pointer"
+                        className="p-1.5 rounded hover:bg-[#e5dfd2] text-[#4c4842] cursor-pointer"
                       >
                         <ArrowDown className="h-4 w-4" />
                       </button>
@@ -187,7 +187,7 @@ export const LessonsPage: React.FC = () => {
                           )
                         }
                         className={`px-2.5 py-1 rounded text-[11.5px] font-semibold cursor-pointer ${
-                          les.published ? 'bg-[#F0FDF4] text-[#15803D]' : 'bg-[#F3F4F6] text-[#4B5563]'
+                          les.published ? 'bg-[#e4ede7] text-[#15463a]' : 'bg-[#e5dfd2] text-[#4c4842]'
                         }`}
                       >
                         {les.published ? 'Published' : 'Unpublished'}
@@ -198,7 +198,7 @@ export const LessonsPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setLessons((prev) => prev.filter((x) => x.id !== les.id))}
-                      className="p-1.5 rounded hover:bg-[#FEF2F2] text-[#DC2626] cursor-pointer"
+                      className="p-1.5 rounded hover:bg-[#FEF2F2] text-[#a5331f] cursor-pointer"
                     >
                       <Trash2 className="h-4 w-4" />
                     </button>
@@ -219,7 +219,7 @@ export const LessonsPage: React.FC = () => {
                 <select
                   value={type}
                   onChange={(e) => setType(e.target.value as 'video' | 'text' | 'quiz')}
-                  className="w-full h-9 px-2.5 rounded-[8px] border border-[#E5E7EB] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
                 >
                   <option value="video">Video Lesson</option>
                   <option value="text">Text / Reading</option>
@@ -232,7 +232,7 @@ export const LessonsPage: React.FC = () => {
                 <select
                   value={availabilityRule}
                   onChange={(e) => setAvailabilityRule(e.target.value as 'immediate' | 'sequential' | 'scheduled')}
-                  className="w-full h-9 px-2.5 rounded-[8px] border border-[#E5E7EB] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
                 >
                   <option value="immediate">Immediate</option>
                   <option value="sequential">Sequential Unlock</option>
@@ -246,7 +246,7 @@ export const LessonsPage: React.FC = () => {
                 <select
                   value={videoId}
                   onChange={(e) => setVideoId(e.target.value)}
-                  className="w-full h-9 px-2.5 rounded-[8px] border border-[#E5E7EB] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
                 >
                   {videos.map((v) => (
                     <option key={v.id} value={v.id}>
@@ -284,7 +284,7 @@ export const LessonsPage: React.FC = () => {
             <div className="space-y-3 text-[13.5px]">
               <Badge tone="primary">{previewLesson.type}</Badge>
               <h3 className="text-[18px] font-bold">{previewLesson.title.en}</h3>
-              <p className="text-[#6B7280]">Section: {previewLesson.sectionTitle.en} · {previewLesson.durationMinutes} min</p>
+              <p className="text-[#6e6a62]">Section: {previewLesson.sectionTitle.en} · {previewLesson.durationMinutes} min</p>
               {previewLesson.attachmentName && <p>Attachment: {previewLesson.attachmentName}</p>}
             </div>
           )}
@@ -453,7 +453,7 @@ export const VideosAdminPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.videos.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.videos.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">
               {t.pages.videos.subtitle}
             </p>
@@ -511,8 +511,8 @@ export const VideosAdminPage: React.FC = () => {
                     )}
                   </div>
                   <div>
-                    <p className="font-semibold text-[#1F2937]">{v.title.en}</p>
-                    <p className="text-[11px] font-mono-custom text-[#6B7280]">
+                    <p className="font-semibold text-[#141312]">{v.title.en}</p>
+                    <p className="text-[11px] font-mono-tech text-[#6e6a62]">
                       {v.provider} · {v.providerAssetId}
                       {v.fileName ? ` · ${v.fileName}` : ''}
                       {v.fileSizeBytes ? ` (${formatFileSize(v.fileSizeBytes)})` : ''}
@@ -561,7 +561,7 @@ export const VideosAdminPage: React.FC = () => {
                     type="button"
                     onClick={() => setPreviewVideo(v)}
                     title="Preview video"
-                    className="p-1.5 rounded hover:bg-[#F3F4F6] text-[#2563EB] cursor-pointer"
+                    className="p-1.5 rounded hover:bg-[#e5dfd2] text-[#1c5b48] cursor-pointer"
                   >
                     <Eye className="h-4 w-4" />
                   </button>
@@ -573,7 +573,7 @@ export const VideosAdminPage: React.FC = () => {
                           prev.map((x) => (x.id === v.id ? { ...x, processingStatus: 'ready' } : x)),
                         )
                       }
-                      className="px-2 py-1 rounded bg-[#F0FDF4] text-[#15803D] text-[11px] font-semibold cursor-pointer inline-flex items-center gap-1"
+                      className="px-2 py-1 rounded bg-[#e4ede7] text-[#15463a] text-[11px] font-semibold cursor-pointer inline-flex items-center gap-1"
                     >
                       <CheckCircle2 className="h-3 w-3" />
                       Mark Ready
@@ -583,7 +583,7 @@ export const VideosAdminPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setDeleteTarget(v)}
-                      className="p-1.5 rounded hover:bg-[#FEF2F2] text-[#DC2626] cursor-pointer"
+                      className="p-1.5 rounded hover:bg-[#FEF2F2] text-[#a5331f] cursor-pointer"
                     >
                       <Trash2 className="h-4 w-4" />
                     </button>
@@ -614,32 +614,32 @@ export const VideosAdminPage: React.FC = () => {
                 }}
                 onDragLeave={() => setIsDragging(false)}
                 onDrop={handleDrop}
-                className={`rounded-[12px] border-2 border-dashed p-5 text-center cursor-pointer transition-colors ${
+                className={`rounded-2xl border-2 border-dashed p-5 text-center cursor-pointer transition-colors ${
                   isDragging
-                    ? 'border-[#2563EB] bg-[#EFF6FF]'
-                    : 'border-[#CBD5E1] bg-[#F8FAFC] hover:border-[#2563EB] hover:bg-[#EFF6FF]/40'
+                    ? 'border-[#1c5b48] bg-[#e4ede7]'
+                    : 'border-[#c2baa8] bg-[#f6f3ec] hover:border-[#1c5b48] hover:bg-[#e4ede7]/40'
                 }`}
               >
-                <UploadCloud className="h-8 w-8 text-[#2563EB] mx-auto mb-2" />
-                <p className="text-[13.5px] font-semibold text-[#1F2937]">
+                <UploadCloud className="h-8 w-8 text-[#1c5b48] mx-auto mb-2" />
+                <p className="text-[13.5px] font-semibold text-[#141312]">
                   Drop video file here or click to browse
                 </p>
-                <p className="text-[11.5px] text-[#6B7280] mt-0.5">
+                <p className="text-[11.5px] text-[#6e6a62] mt-0.5">
                   MP4, WebM, MOV or MKV · Max 500MB · Duration detected automatically
                 </p>
               </div>
             ) : (
-              <div className="rounded-[12px] border border-[#E5E7EB] bg-[#F8FAFC] p-3 space-y-2.5">
+              <div className="rounded-2xl border border-[#ded8ca] bg-[#f6f3ec] p-3 space-y-2.5">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="h-9 w-9 rounded-[8px] bg-[#EFF6FF] text-[#2563EB] flex items-center justify-center shrink-0">
+                    <div className="h-9 w-9 rounded-xl bg-[#e4ede7] text-[#1c5b48] flex items-center justify-center shrink-0">
                       <Film className="h-4.5 w-4.5" />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-[13px] font-semibold text-[#1F2937] truncate">
+                      <p className="text-[13px] font-semibold text-[#141312] truncate">
                         {selectedFile.name}
                       </p>
-                      <p className="text-[11.5px] text-[#6B7280]">
+                      <p className="text-[11.5px] text-[#6e6a62]">
                         {formatFileSize(selectedFile.size)} · {durationMinutes} min
                       </p>
                     </div>
@@ -661,7 +661,7 @@ export const VideosAdminPage: React.FC = () => {
                         setVideoPreviewUrl(undefined);
                       }}
                       title="Remove selected video"
-                      className="p-1.5 rounded-[8px] text-[#6B7280] hover:bg-[#FEE2E2] hover:text-[#DC2626] cursor-pointer"
+                      className="p-1.5 rounded-xl text-[#6e6a62] hover:bg-[#FEE2E2] hover:text-[#a5331f] cursor-pointer"
                     >
                       <X className="h-4 w-4" />
                     </button>
@@ -671,14 +671,14 @@ export const VideosAdminPage: React.FC = () => {
                   <video
                     src={videoPreviewUrl}
                     controls
-                    className="w-full max-h-48 rounded-[8px] bg-black object-contain"
+                    className="w-full max-h-48 rounded-xl bg-black object-contain"
                   />
                 )}
               </div>
             )}
 
             {uploadError && (
-              <p className="text-[12.5px] text-[#DC2626] bg-[#FEF2F2] border border-[#FECACA] rounded-[8px] px-3 py-2">
+              <p className="text-[12.5px] text-[#a5331f] bg-[#FEF2F2] border border-[#FECACA] rounded-xl px-3 py-2">
                 {uploadError}
               </p>
             )}
@@ -691,7 +691,7 @@ export const VideosAdminPage: React.FC = () => {
                 <select
                   value={provider}
                   onChange={(e) => setProvider(e.target.value as 'Cloudflare Stream' | 'Mux')}
-                  className="w-full h-9 px-2.5 rounded-[8px] border border-[#E5E7EB] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
                 >
                   <option value="Cloudflare Stream">Cloudflare Stream</option>
                   <option value="Mux">Mux Video</option>
@@ -702,7 +702,7 @@ export const VideosAdminPage: React.FC = () => {
                 <select
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
-                  className="w-full h-9 px-2.5 rounded-[8px] border border-[#E5E7EB] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
                 >
                   {categories.map((c) => (
                     <option key={c.id} value={c.id}>{c.name.en}</option>
@@ -714,7 +714,7 @@ export const VideosAdminPage: React.FC = () => {
                 <select
                   value={accessRule}
                   onChange={(e) => setAccessRule(e.target.value as 'free' | 'basic' | 'premium')}
-                  className="w-full h-9 px-2.5 rounded-[8px] border border-[#E5E7EB] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
                 >
                   <option value="free">Free</option>
                   <option value="basic">Basic Plan</option>
@@ -748,16 +748,16 @@ export const VideosAdminPage: React.FC = () => {
                   src={previewVideo.videoPreviewUrl}
                   controls
                   autoPlay
-                  className="w-full max-h-72 rounded-[10px] bg-black"
+                  className="w-full max-h-72 rounded-xl bg-black"
                 />
               ) : (
-                <div className="rounded-[10px] bg-[#0F172A] text-white p-8 text-center space-y-2">
-                  <Film className="h-8 w-8 mx-auto text-[#60A5FA]" />
+                <div className="rounded-xl bg-[#141312] text-white p-8 text-center space-y-2">
+                  <Film className="h-8 w-8 mx-auto text-[#7FB59C]" />
                   <p className="font-semibold">{previewVideo.provider} · {previewVideo.providerAssetId}</p>
-                  <p className="text-[12px] text-[#94A3B8]">Hosted stream asset preview ({previewVideo.durationMinutes} min)</p>
+                  <p className="text-[12px] text-[#6e6a62]">Hosted stream asset preview ({previewVideo.durationMinutes} min)</p>
                 </div>
               )}
-              <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#6B7280]">
+              <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#6e6a62]">
                 <Badge tone={videoStatusTone[previewVideo.processingStatus]}>{previewVideo.processingStatus}</Badge>
                 <Badge tone="primary">{previewVideo.accessRule}</Badge>
                 <span>{previewVideo.durationMinutes} min</span>

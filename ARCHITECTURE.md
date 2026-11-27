@@ -1,4 +1,4 @@
-# CamcodeLearn Admin Dashboard — System Architecture & Screen Specifications (Port 3002)
+# Camcode Admin Dashboard — System Architecture & Screen Specifications (Port 3002)
 
 ## 1. Platform Topology
 

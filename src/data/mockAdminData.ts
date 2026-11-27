@@ -30,8 +30,8 @@ import type {
 export const INITIAL_ADMINS: AdminUser[] = [
   {
     id: 'adm-1',
-    name: 'Kosal Rith',
-    email: 'kosal.rith@camcodelearn.edu',
+    name: 'Sopheak Khoeun',
+    email: 'sopheak.khoeun@camcode.com',
     roleId: 'role-super-admin',
     status: 'active',
     lastLogin: '2026-11-25 21:40',
@@ -207,7 +207,7 @@ export const INITIAL_INSTRUCTORS: AdminInstructor[] = [
     assignedCoursesCount: 3,
     totalStudents: 7600,
     avgRating: 4.7,
-    avatarColor: '#D97706',
+    avatarColor: '#8a5008',
   },
 ];
 
@@ -234,7 +234,7 @@ export const INITIAL_COURSES: AdminCourse[] = [
     featured: true,
     objectives: ['Build buyer personas', 'Run Meta & Google campaigns', 'Configure GA4 events'],
     requirements: ['No prior marketing experience required'],
-    seoTitle: 'Complete Digital Marketing Course | CamcodeLearn Academy',
+    seoTitle: 'Complete Digital Marketing Course | Camcode Academy',
     seoDescription: 'Master SEO, social campaigns, and analytics in English & Khmer.',
     lastUpdated: '2026-11-18',
   },
@@ -558,10 +558,10 @@ export const INITIAL_PATHS: AdminLearningPath[] = [
 export const INITIAL_TEMPLATES: CertificateTemplate[] = [
   {
     id: 'tpl-1',
-    name: 'CamcodeLearn Official Gold & Navy',
+    name: 'Camcode Official Gold & Navy',
     accentColor: '#2563EB',
-    logoText: 'CamcodeLearn Academy',
-    signatoryName: 'Kosal Rith',
+    logoText: 'Camcode Academy',
+    signatoryName: 'Sopheak Khoeun',
     signatoryTitle: 'Academic Director',
     includeVerificationQr: true,
     pdfPaperSize: 'A4',
@@ -572,7 +572,7 @@ export const INITIAL_TEMPLATES: CertificateTemplate[] = [
     id: 'tpl-2',
     name: 'Executive Certification Minimal',
     accentColor: '#0F172A',
-    logoText: 'CamcodeLearn Executive',
+    logoText: 'Camcode Executive',
     signatoryName: 'Bopha Keo',
     signatoryTitle: 'Head of Assessments',
     includeVerificationQr: true,
@@ -1103,7 +1103,7 @@ export const INITIAL_TESTIMONIALS: AdminTestimonial[] = [
     id: 'test-1',
     authorName: 'Sovannarith Phan',
     role: 'Founder, Mekong Retail',
-    quote: { en: 'CamcodeLearn helped our marketing team standardize reporting in two weeks.', km: 'CamcodeLearn ជួយក្រុមទីផ្សាររបស់យើងរៀបចំរបាយការណ៍បានច្បាស់លាស់។' },
+    quote: { en: 'Camcode helped our marketing team standardize reporting in two weeks.', km: 'Camcode ជួយក្រុមទីផ្សាររបស់យើងរៀបចំរបាយការណ៍បានច្បាស់លាស់។' },
     rating: 5,
     published: true,
   },
@@ -1120,7 +1120,7 @@ export const INITIAL_TESTIMONIALS: AdminTestimonial[] = [
 export const INITIAL_AUDIT_LOGS: AuditLogRecord[] = [
   {
     id: 'aud-1',
-    actorName: 'Kosal Rith',
+    actorName: 'Sopheak Khoeun',
     actorRole: 'Super Admin',
     action: 'Updated RBAC permission matrix for Content Manager',
     module: 'roles',
@@ -1154,12 +1154,12 @@ export const INITIAL_AUDIT_LOGS: AuditLogRecord[] = [
 ];
 
 export const INITIAL_SETTINGS: SystemSettingsState = {
-  platformName: 'CamcodeLearn Academy',
+  platformName: 'Camcode Academy',
   defaultLanguage: 'en',
   supportedLanguages: ['en', 'km'],
   currency: 'USD',
   timezone: 'Asia/Phnom_Penh',
-  emailSenderName: 'CamcodeLearn Academy',
+  emailSenderName: 'Camcode Academy',
   emailReplyTo: 'support@camcodelearn.edu',
   videoProvider: 'Cloudflare Stream',
   khqrEnabled: true,

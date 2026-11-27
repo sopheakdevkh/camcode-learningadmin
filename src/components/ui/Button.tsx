@@ -14,18 +14,18 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantMap: Record<ButtonVariant, string> = {
-  primary: 'bg-[#2563EB] text-white border border-transparent hover:bg-[#1D4ED8]',
-  secondary: 'bg-[#111827] text-white border border-transparent hover:bg-[#1F2937]',
-  outline: 'bg-white text-[#1F2937] border border-[#E5E7EB] hover:bg-[#F9FAFB]',
-  ghost: 'bg-transparent text-[#374151] border border-transparent hover:bg-[#F3F4F6]',
-  danger: 'bg-[#DC2626] text-white border border-transparent hover:bg-[#B91C1C]',
-  success: 'bg-[#16A34A] text-white border border-transparent hover:bg-[#15803D]',
+  primary: 'bg-[#1c5b48] text-white border border-transparent hover:bg-[#15463a]',
+  secondary: 'bg-[#141312] text-white border border-transparent hover:bg-[#2A302C]',
+  outline: 'bg-[#efebe1] text-[#141312] border border-[#ded8ca] hover:bg-[#e5dfd2] hover:border-[#c2baa8]',
+  ghost: 'bg-transparent text-[#4c4842] border border-transparent hover:bg-[#e5dfd2]/75',
+  danger: 'bg-[#a5331f] text-white border border-transparent hover:bg-[#991B1B]',
+  success: 'bg-[#1c5b48] text-white border border-transparent hover:bg-[#15463a]',
 };
 
 const sizeMap: Record<ButtonSize, string> = {
-  sm: 'h-9 px-3.5 text-[13px]',
-  md: 'h-10 px-4.5 text-[14px]',
-  lg: 'h-12 px-6 text-[15px]',
+  sm: 'h-8 px-3.5 text-[12.5px] rounded-full gap-1.5',
+  md: 'h-9 px-4 text-[13.5px] rounded-full gap-2',
+  lg: 'h-11 px-5 text-[14.5px] rounded-full gap-2',
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -33,25 +33,22 @@ export const Button: React.FC<ButtonProps> = ({
   size = 'md',
   loading = false,
   fullWidth = false,
-  disabled,
   leftIcon,
   rightIcon,
   children,
   className = '',
-  type = 'button',
+  disabled,
   ...props
-}) => {
-  return (
-    <button
-      type={type}
-      disabled={disabled || loading}
-      className={`inline-flex items-center justify-center gap-1.5 rounded-[8px] font-medium transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${variantMap[variant]} ${sizeMap[size]} ${fullWidth ? 'w-full' : ''} ${className}`}
-      {...props}
-    >
-      {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : leftIcon}
-      <span>{children}</span>
-      {!loading && rightIcon}
-    </button>
-  );
-};
-
+}) => (
+  <button
+    disabled={disabled || loading}
+    className={`inline-flex items-center justify-center font-medium transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap ${
+      variantMap[variant]
+    } ${sizeMap[size]} ${fullWidth ? 'w-full' : ''} ${className}`}
+    {...props}
+  >
+    {loading ? <Loader2 className="h-4 w-4 animate-spin shrink-0" /> : leftIcon}
+    {children}
+    {!loading && rightIcon}
+  </button>
+);

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import {
   Activity,
@@ -17,7 +17,6 @@ import {
   Film,
   FolderTree,
   Globe,
-  GraduationCap,
   HelpCircle,
   Image,
   KeyRound,
@@ -60,6 +59,24 @@ interface SidebarItem {
   icon: React.ReactNode;
   badge?: number;
 }
+
+const BrandMark: React.FC<{ small?: boolean }> = ({ small = false }) => (
+  <span
+    className={`inline-flex ${
+      small ? 'h-8 w-8' : 'h-9 w-9'
+    } items-center justify-center rounded-xl bg-[#1c5b48] text-white shadow-2xs shrink-0`}
+  >
+    <svg width={small ? 15 : 17} height={small ? 15 : 17} viewBox="0 0 16 16" fill="none">
+      <path
+        d="M3 5.5H13M3 10.5C5.2 8.9 6.8 12.1 9 10.5C10.5 9.4 11.7 9.6 13 10.5"
+        stroke="currentColor"
+        strokeWidth="1.65"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </span>
+);
 
 export const AdminShell: React.FC = () => {
   const { t, locale, toggleLocale } = useI18n();
@@ -220,7 +237,7 @@ export const AdminShell: React.FC = () => {
       {visibleGroups.map((group) => (
         <div key={group.title}>
           {!isCollapsed && (
-            <p className="px-3 mb-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#64748B]">
+            <p className="px-3 mb-1.5 font-mono-tech text-[10.5px] font-medium uppercase tracking-[0.14em] text-[#6e6a62]">
               {group.title}
             </p>
           )}
@@ -233,10 +250,10 @@ export const AdminShell: React.FC = () => {
                 onClick={onClickItem}
                 title={isCollapsed ? item.label : undefined}
                 className={({ isActive }) =>
-                  `flex items-center ${isCollapsed ? 'justify-center px-2' : 'justify-between px-3'} gap-2.5 py-2 rounded-[10px] text-[13.5px] font-medium transition-colors ${
+                  `flex items-center ${isCollapsed ? 'justify-center px-2' : 'justify-between px-3'} gap-2.5 py-2 rounded-xl text-[13.5px] font-medium transition-colors ${
                     isActive
-                      ? 'bg-[#EFF6FF] text-[#2563EB] font-semibold border-l-3 border-[#2563EB]'
-                      : 'text-[#334155] hover:bg-[#F8FAFC] hover:text-[#1D4ED8]'
+                      ? 'bg-[#e4ede7] text-[#1c5b48] font-semibold border border-[#c5d6cb]'
+                      : 'text-[#4c4842] hover:bg-[#e5dfd2]/75 hover:text-[#141312]'
                   }`
                 }
               >
@@ -245,7 +262,7 @@ export const AdminShell: React.FC = () => {
                   {!isCollapsed && <span className="truncate">{item.label}</span>}
                 </span>
                 {!isCollapsed && item.badge !== undefined && item.badge > 0 && (
-                  <span className="px-2 py-0.5 rounded-full bg-[#2563EB] text-white text-[10.5px] font-bold leading-none">
+                  <span className="px-2 py-0.5 rounded-full bg-[#1c5b48] text-white font-mono-tech text-[10.5px] font-semibold leading-none">
                     {item.badge}
                   </span>
                 )}
@@ -257,26 +274,42 @@ export const AdminShell: React.FC = () => {
     </div>
   );
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [mobileOpen]);
+
   return (
-    <div className="min-h-screen flex bg-transparent text-[#1F2937]">
+    <div className="min-h-screen flex bg-transparent text-[#141312]">
       <div className="bg-environment" />
       <div className="grid-floor" />
 
-      {/* White Sidebar consistent with CamcodeLearn */}
+      {/* Warm Stone Sidebar */}
       <aside
-        className={`no-print hidden lg:flex flex-col sticky top-0 h-screen shrink-0 bg-white/90 backdrop-blur-xl text-[#1F2937] border-r border-[#E5E7EB] transition-all duration-200 z-30 ${
+        className={`no-print hidden lg:flex flex-col sticky top-0 h-screen shrink-0 bg-[#efebe1]/92 backdrop-blur-xl text-[#141312] border-r border-[#ded8ca] transition-all duration-200 z-30 ${
           collapsed ? 'w-[76px]' : 'w-[258px]'
         }`}
       >
-        <div className="h-16 px-4 flex items-center justify-between border-b border-[#E5E7EB] shrink-0">
+        <div className="h-16 px-4 flex items-center justify-between border-b border-[#ded8ca] shrink-0">
           <Link to="/" className="flex items-center gap-2.5 min-w-0">
-            <div className="h-9 w-9 rounded-[10px] bg-gradient-to-br from-[#2563EB] to-[#0891B2] text-white flex items-center justify-center shadow-sm shrink-0">
-              <GraduationCap className="h-5 w-5" />
-            </div>
+            <BrandMark />
             {!collapsed && (
               <div className="min-w-0">
-                <p className="text-[15px] font-bold text-[#1F2937] leading-tight truncate">{t.brand.name}</p>
-                <p className="text-[11px] text-[#2563EB] font-medium leading-tight">{t.brand.console}</p>
+                <p className="font-serif-display text-[17px] font-normal tracking-[-0.015em] text-[#141312] leading-tight truncate">
+                  {t.brand.name}
+                </p>
+                <p className="font-mono-tech text-[10.5px] uppercase tracking-[0.12em] text-[#1c5b48] font-medium leading-tight">
+                  {t.brand.console}
+                </p>
               </div>
             )}
           </Link>
@@ -285,10 +318,10 @@ export const AdminShell: React.FC = () => {
         {renderSidebarContent(collapsed)}
 
         {!collapsed && (
-          <div className="p-3 border-t border-[#E5E7EB] text-[11px] text-[#6B7280] flex items-center justify-between bg-[#F9FAFB]">
+          <div className="p-3 border-t border-[#ded8ca] text-[11px] font-mono-tech text-[#6e6a62] flex items-center justify-between bg-[#f6f3ec]/70">
             <span>Port 3002 · API :4000</span>
-            <span className="inline-flex items-center gap-1 text-[#16A34A] font-medium">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#16A34A]" />
+            <span className="inline-flex items-center gap-1.5 text-[#1c5b48] font-medium">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#1c5b48]" />
               {t.pages.dashboard.liveLabel}
             </span>
           </div>
@@ -296,71 +329,84 @@ export const AdminShell: React.FC = () => {
       </aside>
 
       {/* Mobile Drawer */}
-      {mobileOpen && (
+      <div
+        className={`fixed inset-0 z-50 lg:hidden transition-all duration-300 ${
+          mobileOpen ? 'pointer-events-auto visible' : 'pointer-events-none invisible'
+        }`}
+        aria-hidden={!mobileOpen}
+      >
         <div
-          className="fixed inset-0 z-50 lg:hidden bg-[#111827]/45 backdrop-blur-[2px] flex"
+          className={`fixed inset-0 bg-[#141312]/45 backdrop-blur-xs transition-opacity duration-300 ${
+            mobileOpen ? 'opacity-100' : 'opacity-0'
+          }`}
           onClick={() => setMobileOpen(false)}
+        />
+        <div
+          className={`relative z-10 w-[280px] max-w-[85vw] h-full bg-[#efebe1] text-[#141312] border-r border-[#ded8ca] flex flex-col shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            mobileOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
+          onClick={(e) => e.stopPropagation()}
         >
-          <div
-            className="w-[264px] h-full bg-white text-[#1F2937] border-r border-[#E5E7EB] flex flex-col shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="h-14 px-4 flex items-center justify-between border-b border-[#E5E7EB]">
-              <Link
-                to="/"
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-2.5"
-              >
-                <div className="h-8 w-8 rounded-[9px] bg-gradient-to-br from-[#2563EB] to-[#0891B2] text-white flex items-center justify-center shadow-sm">
-                  <GraduationCap className="h-4.5 w-4.5" />
-                </div>
-                <span className="font-bold text-[15px] text-[#1F2937]">{t.brand.name}</span>
-              </Link>
-              <button
-                type="button"
-                onClick={() => setMobileOpen(false)}
-                className="p-1 rounded-md text-[#6B7280] hover:bg-[#F3F4F6] hover:text-[#1F2937] cursor-pointer"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-            {renderSidebarContent(false, () => setMobileOpen(false))}
+          <div className="h-16 px-4 flex items-center justify-between border-b border-[#ded8ca] shrink-0">
+            <Link
+              to="/"
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center gap-2.5"
+            >
+              <BrandMark small />
+              <span className="font-serif-display text-[17px] text-[#141312]">
+                {t.brand.name}
+              </span>
+            </Link>
+            <button
+              type="button"
+              onClick={() => setMobileOpen(false)}
+              className="h-8 w-8 rounded-full border border-[#ded8ca] bg-[#f6f3ec] text-[#6e6a62] hover:bg-[#e5dfd2] hover:text-[#141312] flex items-center justify-center cursor-pointer transition-colors"
+              aria-label="Close navigation drawer"
+            >
+              <X className="h-4 w-4" />
+            </button>
           </div>
+          {renderSidebarContent(false, () => setMobileOpen(false))}
         </div>
-      )}
+      </div>
 
       {/* Main Column */}
       <div className="flex-1 min-w-0 flex flex-col">
         {/* Top Bar */}
-        <header className="no-print sticky top-0 z-20 h-16 px-4 sm:px-6 bg-white/80 backdrop-blur-xl border-b border-[#E5E7EB]/80 flex items-center justify-between gap-4">
+        <header className="no-print sticky top-0 z-20 h-16 px-4 sm:px-6 bg-[#f6f3ec]/85 backdrop-blur-xl border-b border-[#ded8ca] flex items-center justify-between gap-4">
           <div className="flex items-center gap-2.5 min-w-0">
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
-              className="lg:hidden p-2 rounded-md text-[#4B5563] hover:bg-[#F3F4F6] cursor-pointer"
+              className="lg:hidden h-9 w-9 rounded-full border border-[#ded8ca] bg-[#efebe1] text-[#4c4842] hover:bg-[#e5dfd2] flex items-center justify-center cursor-pointer transition-colors"
+              aria-label="Open navigation menu"
             >
-              <Menu className="h-5 w-5" />
+              <Menu className="h-4.5 w-4.5" />
             </button>
             <button
               type="button"
               onClick={() => setCollapsed((c) => !c)}
-              className="hidden lg:inline-flex p-2 rounded-md text-[#6B7280] hover:text-[#1F2937] hover:bg-[#F3F4F6] cursor-pointer transition-colors"
+              className="hidden lg:inline-flex h-9 w-9 rounded-full border border-[#ded8ca] bg-[#efebe1] text-[#6e6a62] hover:text-[#141312] hover:bg-[#e5dfd2] items-center justify-center cursor-pointer transition-colors"
               aria-label="Toggle sidebar"
             >
-              {collapsed ? <PanelLeftOpen className="h-4.5 w-4.5" /> : <PanelLeftClose className="h-4.5 w-4.5" />}
+              {collapsed ? <PanelLeftOpen className="h-4 w-4" /> : <PanelLeftClose className="h-4 w-4" />}
             </button>
-            <div className="flex items-center gap-1.5 text-[13px] text-[#6B7280] min-w-0">
-              <span className="hidden sm:inline truncate">{breadcrumb.group}</span>
-              <span className="hidden sm:inline text-[#D1D5DB]">/</span>
-              <span className="font-semibold text-[14.5px] text-[#1F2937] truncate">{breadcrumb.label}</span>
+            <div className="flex items-center gap-1.5 text-[13px] text-[#6e6a62] min-w-0">
+              <span className="hidden sm:inline font-mono-tech text-[11px] uppercase tracking-[0.1em] truncate">
+                {breadcrumb.group}
+              </span>
+              <span className="hidden sm:inline text-[#c2baa8]">/</span>
+              <span className="font-semibold text-[14.5px] text-[#141312] truncate">
+                {breadcrumb.label}
+              </span>
             </div>
           </div>
 
-          {/* Right Utility Cluster: Search + EN/KM + Help + Bell + Profile */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Search Input (clean icon on right like reference) */}
+          {/* Right Utility Cluster */}
+          <div className="flex items-center gap-2 sm:gap-2.5">
             <div className="relative hidden md:block w-60 lg:w-72">
-              <div className="flex items-center h-9 px-3 rounded-[9px] border border-[#E5E7EB] bg-[#F9FAFB] focus-within:bg-white focus-within:border-[#2563EB] transition-colors">
+              <div className="flex items-center h-9 px-3.5 rounded-full border border-[#ded8ca] bg-[#efebe1] focus-within:border-[#1c5b48] focus-within:ring-2 focus-within:ring-[#1c5b48]/15 transition-colors">
                 <input
                   type="text"
                   value={searchQuery}
@@ -368,25 +414,25 @@ export const AdminShell: React.FC = () => {
                   onBlur={() => setTimeout(() => setSearchOpen(false), 180)}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={t.common.searchPlaceholder}
-                  className="w-full bg-transparent text-[13px] text-[#1F2937] placeholder:text-[#9CA3AF] outline-none pr-2"
+                  className="w-full bg-transparent text-[13px] text-[#141312] placeholder:text-[#6e6a62] outline-none pr-2"
                 />
                 {searchQuery ? (
                   <button
                     type="button"
                     onClick={() => setSearchQuery('')}
-                    className="text-[#9CA3AF] hover:text-[#4B5563] cursor-pointer shrink-0"
+                    className="text-[#6e6a62] hover:text-[#141312] cursor-pointer shrink-0"
                   >
                     <X className="h-3.5 w-3.5" />
                   </button>
                 ) : (
-                  <Search className="h-4 w-4 text-[#9CA3AF] shrink-0" />
+                  <Search className="h-4 w-4 text-[#6e6a62] shrink-0" />
                 )}
               </div>
 
               {searchOpen && searchQuery.trim().length > 0 && (
-                <div className="absolute left-0 right-0 top-10 bg-white border border-[#E5E7EB] rounded-[10px] shadow-xl p-1.5 z-40">
+                <div className="absolute left-0 right-0 top-11 bg-[#efebe1] border border-[#ded8ca] rounded-2xl shadow-[0_18px_40px_-14px_rgba(23,28,25,0.16)] p-1.5 z-40">
                   {searchHits.length === 0 ? (
-                    <p className="p-3 text-[12.5px] text-[#6B7280] text-center">{t.common.empty}</p>
+                    <p className="p-3 text-[12.5px] text-[#6e6a62] text-center">{t.common.empty}</p>
                   ) : (
                     searchHits.map((h, i) => (
                       <button
@@ -396,10 +442,12 @@ export const AdminShell: React.FC = () => {
                           navigate(h.to);
                           setSearchQuery('');
                         }}
-                        className="w-full text-left px-3 py-2 rounded-[6px] hover:bg-[#F3F4F6] flex items-center justify-between gap-2 text-[13px] cursor-pointer"
+                        className="w-full text-left px-3 py-2 rounded-xl hover:bg-[#e5dfd2]/75 flex items-center justify-between gap-2 text-[13px] cursor-pointer transition-colors"
                       >
-                        <span className="font-medium text-[#1F2937] truncate">{h.label}</span>
-                        <span className="text-[11px] text-[#2563EB] shrink-0">{h.kind}</span>
+                        <span className="font-medium text-[#141312] truncate">{h.label}</span>
+                        <span className="font-mono-tech text-[10.5px] text-[#1c5b48] shrink-0">
+                          {h.kind}
+                        </span>
                       </button>
                     ))
                   )}
@@ -410,9 +458,9 @@ export const AdminShell: React.FC = () => {
             <button
               type="button"
               onClick={toggleLocale}
-              className="h-8 px-2.5 rounded-[8px] text-[12px] font-semibold text-[#4B5563] hover:text-[#2563EB] hover:bg-[#F3F4F6] inline-flex items-center gap-1 cursor-pointer transition-colors"
+              className="h-9 px-3 rounded-full border border-[#ded8ca] bg-[#efebe1] text-[12px] font-semibold text-[#4c4842] hover:text-[#1c5b48] hover:bg-[#e5dfd2] inline-flex items-center gap-1.5 cursor-pointer transition-colors"
             >
-              <Globe className="h-3.5 w-3.5 text-[#2563EB]" />
+              <Globe className="h-3.5 w-3.5 text-[#1c5b48]" />
               {locale === 'en' ? 'EN' : 'KM'}
             </button>
 
@@ -420,9 +468,9 @@ export const AdminShell: React.FC = () => {
               type="button"
               onClick={() => navigate('/system/audit-logs')}
               title={t.common.helpDocs}
-              className="h-8 w-8 rounded-[8px] text-[#4B5563] hover:text-[#2563EB] hover:bg-[#F3F4F6] inline-flex items-center justify-center cursor-pointer transition-colors"
+              className="h-9 w-9 rounded-full border border-[#ded8ca] bg-[#efebe1] text-[#4c4842] hover:text-[#1c5b48] hover:bg-[#e5dfd2] inline-flex items-center justify-center cursor-pointer transition-colors"
             >
-              <HelpCircle className="h-4.5 w-4.5" />
+              <HelpCircle className="h-4 w-4" />
             </button>
 
             {/* Notifications */}
@@ -433,25 +481,29 @@ export const AdminShell: React.FC = () => {
                   setNotifOpen((o) => !o);
                   setProfileOpen(false);
                 }}
-                className="relative h-8 w-8 rounded-[8px] text-[#4B5563] hover:text-[#2563EB] hover:bg-[#F3F4F6] inline-flex items-center justify-center cursor-pointer transition-colors"
+                className="relative h-9 w-9 rounded-full border border-[#ded8ca] bg-[#efebe1] text-[#4c4842] hover:text-[#1c5b48] hover:bg-[#e5dfd2] inline-flex items-center justify-center cursor-pointer transition-colors"
               >
-                <Bell className="h-4.5 w-4.5" />
-                <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-[#DC2626] ring-2 ring-white" />
+                <Bell className="h-4 w-4" />
+                <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-[#a5331f] ring-2 ring-[#efebe1]" />
               </button>
 
               {notifOpen && (
-                <div className="absolute right-0 top-10 w-80 bg-white border border-[#E5E7EB] rounded-[10px] shadow-xl z-40 overflow-hidden">
-                  <div className="px-4 py-2.5 border-b border-[#E5E7EB] font-semibold text-[13px] flex justify-between">
-                    <span>Recent Platform Events</span>
-                    <Link to="/system/audit-logs" onClick={() => setNotifOpen(false)} className="text-[#2563EB] text-[12px]">
+                <div className="absolute right-0 top-11 w-80 bg-[#efebe1] border border-[#ded8ca] rounded-2xl shadow-[0_18px_40px_-14px_rgba(23,28,25,0.16)] z-40 overflow-hidden">
+                  <div className="px-4 py-3 border-b border-[#ded8ca] font-semibold text-[13px] flex justify-between bg-[#f6f3ec]/70">
+                    <span className="text-[#141312]">Recent Platform Events</span>
+                    <Link
+                      to="/system/audit-logs"
+                      onClick={() => setNotifOpen(false)}
+                      className="text-[#1c5b48] text-[12px] hover:underline"
+                    >
                       Audit Logs
                     </Link>
                   </div>
-                  <div className="divide-y divide-[#E5E7EB] max-h-72 overflow-y-auto">
+                  <div className="divide-y divide-[#ded8ca]/75 max-h-72 overflow-y-auto">
                     {auditLogs.slice(0, 5).map((log) => (
                       <div key={log.id} className="px-4 py-2.5 text-[12px]">
-                        <p className="font-medium text-[#1F2937]">{log.action}</p>
-                        <p className="text-[#6B7280] mt-0.5">
+                        <p className="font-medium text-[#141312]">{log.action}</p>
+                        <p className="text-[#6e6a62] mt-0.5">
                           {log.actorName} · {log.timestamp}
                         </p>
                       </div>
@@ -461,17 +513,17 @@ export const AdminShell: React.FC = () => {
               )}
             </div>
 
-            {/* Admin Profile & RBAC Switcher (clean avatar + name + role + chevron) */}
-            <div className="relative pl-1">
+            {/* Admin Profile & RBAC Switcher */}
+            <div className="relative pl-0.5">
               <button
                 type="button"
                 onClick={() => {
                   setProfileOpen((p) => !p);
                   setNotifOpen(false);
                 }}
-                className="flex items-center gap-2 py-1 px-1.5 rounded-[10px] hover:bg-[#F3F4F6] transition-colors cursor-pointer"
+                className="flex items-center gap-2 py-1 pl-1 pr-2.5 rounded-full border border-[#ded8ca] bg-[#efebe1] hover:bg-[#e5dfd2] transition-colors cursor-pointer"
               >
-                <span className="h-8 w-8 rounded-full bg-[#2563EB] text-white text-[11.5px] font-bold flex items-center justify-center shrink-0">
+                <span className="h-7 w-7 rounded-full bg-[#1c5b48] text-white text-[11px] font-semibold flex items-center justify-center shrink-0">
                   {currentAdmin?.name
                     .split(' ')
                     .map((n) => n[0])
@@ -479,21 +531,21 @@ export const AdminShell: React.FC = () => {
                     .join('') ?? 'AD'}
                 </span>
                 <div className="hidden sm:block text-left leading-tight">
-                  <p className="text-[13px] font-semibold text-[#1F2937]">{currentAdmin?.name}</p>
-                  <p className="text-[10.5px] text-[#2563EB] font-medium">{currentRole?.name}</p>
+                  <p className="text-[12.5px] font-semibold text-[#141312]">{currentAdmin?.name}</p>
+                  <p className="text-[10.5px] text-[#1c5b48] font-medium">{currentRole?.name}</p>
                 </div>
-                <ChevronDown className="hidden sm:inline h-4 w-4 text-[#6B7280]" />
+                <ChevronDown className="hidden sm:inline h-3.5 w-3.5 text-[#6e6a62]" />
               </button>
 
               {profileOpen && (
-                <div className="absolute right-0 top-10 w-68 bg-white border border-[#E5E7EB] rounded-[10px] shadow-xl p-2 z-40">
-                  <div className="px-3 py-2 border-b border-[#E5E7EB]">
-                    <p className="text-[13px] font-semibold text-[#1F2937]">{currentAdmin?.name}</p>
-                    <p className="text-[11.5px] text-[#6B7280]">{currentAdmin?.email}</p>
+                <div className="absolute right-0 top-11 w-68 bg-[#efebe1] border border-[#ded8ca] rounded-2xl shadow-[0_18px_40px_-14px_rgba(23,28,25,0.16)] p-2 z-40">
+                  <div className="px-3 py-2 border-b border-[#ded8ca]">
+                    <p className="text-[13px] font-semibold text-[#141312]">{currentAdmin?.name}</p>
+                    <p className="text-[11.5px] text-[#6e6a62]">{currentAdmin?.email}</p>
                   </div>
 
-                  <div className="px-3 py-2 border-b border-[#E5E7EB]">
-                    <p className="text-[10.5px] font-semibold uppercase tracking-wider text-[#6B7280] mb-1.5">
+                  <div className="px-3 py-2 border-b border-[#ded8ca]">
+                    <p className="font-mono-tech text-[10px] font-medium uppercase tracking-[0.12em] text-[#6e6a62] mb-1.5">
                       {t.common.switchRole}
                     </p>
                     <div className="space-y-1">
@@ -505,14 +557,16 @@ export const AdminShell: React.FC = () => {
                             switchDemoRole(r.id);
                             setProfileOpen(false);
                           }}
-                          className={`w-full text-left px-2.5 py-1.5 rounded-md text-[12px] font-medium flex items-center justify-between cursor-pointer ${
+                          className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[12px] font-medium flex items-center justify-between cursor-pointer transition-colors ${
                             currentRole?.id === r.id
-                              ? 'bg-[#EFF6FF] text-[#2563EB]'
-                              : 'text-[#374151] hover:bg-[#F3F4F6]'
+                              ? 'bg-[#e4ede7] text-[#1c5b48]'
+                              : 'text-[#4c4842] hover:bg-[#e5dfd2]/70'
                           }`}
                         >
                           <span>{r.name}</span>
-                          {currentRole?.id === r.id && <span className="text-[10px]">Active</span>}
+                          {currentRole?.id === r.id && (
+                            <span className="font-mono-tech text-[10px]">Active</span>
+                          )}
                         </button>
                       ))}
                     </div>
@@ -524,9 +578,9 @@ export const AdminShell: React.FC = () => {
                       setProfileOpen(false);
                       logoutAdmin();
                     }}
-                    className="w-full mt-1 px-3 py-2 rounded-md text-left text-[12.5px] font-medium text-[#DC2626] hover:bg-[#FEF2F2] flex items-center gap-2 cursor-pointer"
+                    className="w-full mt-1 px-3 py-2 rounded-lg text-left text-[12.5px] font-medium text-[#a5331f] hover:bg-[#FEF2F2] flex items-center gap-2 cursor-pointer transition-colors"
                   >
-                    <LogOut className="h-4.5 w-4.5" />
+                    <LogOut className="h-4 w-4" />
                     {t.common.signOut}
                   </button>
                 </div>

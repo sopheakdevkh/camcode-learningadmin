@@ -1,6 +1,6 @@
-# CamcodeLearn Admin Dashboard (Port 3002)
+# Camcode Admin Dashboard (Port 3002)
 
-Bilingual (**English + Khmer**) SaaS administration console for the **CamcodeLearn** platform, running on **Port 3002** (`camcode-learningadmin`) and designed to communicate with the Backend API on **Port 4000**.
+Bilingual (**English + Khmer**) SaaS administration console for the **Camcode** platform, running on **Port 3002** (`camcode-learningadmin`) and designed to communicate with the Backend API on **Port 4000**.
 
 ## Quick Start
 

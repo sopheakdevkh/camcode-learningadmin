@@ -12,14 +12,16 @@ export const BarChartCard: React.FC<{
   data: SeriesPoint[];
   valuePrefix?: string;
   color?: string;
-}> = ({ title, subtitle, data, valuePrefix = '', color = '#2563EB' }) => {
+}> = ({ title, subtitle, data, valuePrefix = '', color = '#1c5b48' }) => {
   const max = Math.max(1, ...data.map((d) => d.value));
 
   return (
-    <div className="bg-white/95 backdrop-blur-sm rounded-[14px] border border-[#E5E7EB] p-5 space-y-4">
+    <div className="card-note p-5 sm:p-6 space-y-4">
       <div>
-        <h3 className="text-[15px] font-semibold text-[#1F2937]">{title}</h3>
-        {subtitle && <p className="text-[12px] text-[#6B7280]">{subtitle}</p>}
+        <h3 className="font-serif-display text-[19px] font-normal tracking-[-0.015em] text-[#141312] leading-snug">
+          {title}
+        </h3>
+        {subtitle && <p className="text-[12.5px] text-[#6e6a62] mt-0.5">{subtitle}</p>}
       </div>
       <div
         className="grid gap-2 sm:gap-3 items-end h-44 pt-4"
@@ -29,15 +31,15 @@ export const BarChartCard: React.FC<{
           const pct = Math.max(8, Math.round((pt.value / max) * 100));
           return (
             <div key={pt.label} className="flex flex-col items-center gap-1.5 h-full justify-end">
-              <span className="text-[11px] font-mono-custom text-[#6B7280]">
+              <span className="text-[11px] font-mono-tech text-[#6e6a62]">
                 {valuePrefix}
                 {pt.value.toLocaleString()}
               </span>
               <div
-                className="w-full max-w-[36px] rounded-t-[6px] transition-all"
+                className="w-full max-w-[36px] rounded-t-[8px] transition-all"
                 style={{ height: `${pct}%`, backgroundColor: color }}
               />
-              <span className="text-[11.5px] font-medium text-[#4B5563]">{pt.label}</span>
+              <span className="text-[11.5px] font-medium text-[#4c4842]">{pt.label}</span>
             </div>
           );
         })}
@@ -53,26 +55,28 @@ export const HorizontalBreakdownCard: React.FC<{
 }> = ({ title, subtitle, items }) => {
   const max = Math.max(1, ...items.map((i) => i.value));
   return (
-    <div className="bg-white/95 backdrop-blur-sm rounded-[14px] border border-[#E5E7EB] p-5 space-y-4">
+    <div className="card-note p-5 sm:p-6 space-y-4">
       <div>
-        <h3 className="text-[15px] font-semibold text-[#1F2937]">{title}</h3>
-        {subtitle && <p className="text-[12px] text-[#6B7280]">{subtitle}</p>}
+        <h3 className="font-serif-display text-[19px] font-normal tracking-[-0.015em] text-[#141312] leading-snug">
+          {title}
+        </h3>
+        {subtitle && <p className="text-[12.5px] text-[#6e6a62] mt-0.5">{subtitle}</p>}
       </div>
-      <div className="space-y-3">
+      <div className="space-y-3.5">
         {items.map((item) => (
-          <div key={item.label} className="space-y-1">
-            <div className="flex justify-between text-[12.5px]">
-              <span className="font-medium text-[#1F2937] truncate pr-2">{item.label}</span>
-              <span className="font-mono-custom font-semibold text-[#4B5563] shrink-0">
+          <div key={item.label} className="space-y-1.5">
+            <div className="flex justify-between text-[13px]">
+              <span className="font-medium text-[#141312] truncate pr-2">{item.label}</span>
+              <span className="font-mono-tech font-semibold text-[#4c4842] shrink-0">
                 {item.displayValue}
               </span>
             </div>
-            <div className="h-2 rounded-full bg-[#F3F4F6] overflow-hidden">
+            <div className="h-2 rounded-full bg-[#e5dfd2] overflow-hidden">
               <div
-                className="h-full rounded-full"
+                className="h-full rounded-full transition-all duration-300"
                 style={{
                   width: `${Math.max(4, Math.round((item.value / max) * 100))}%`,
-                  backgroundColor: item.color ?? '#2563EB',
+                  backgroundColor: item.color ?? '#1c5b48',
                 }}
               />
             </div>
@@ -96,7 +100,7 @@ export const AreaTrendChart: React.FC<{
   subtitle,
   seriesByRange,
   valuePrefix = '',
-  accentColor = '#2563EB',
+  accentColor = '#1c5b48',
   headerRightExtra,
   rangeLabels = { daily: 'Daily', weekly: 'Weekly', monthly: 'Monthly' },
 }) => {
@@ -138,25 +142,27 @@ export const AreaTrendChart: React.FC<{
   const gradId = React.useId();
 
   return (
-    <div className="bg-white/95 backdrop-blur-sm rounded-[14px] border border-[#E5E7EB] p-5 space-y-4">
+    <div className="card-note p-5 sm:p-6 space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h3 className="text-[16px] font-semibold text-[#1F2937]">{title}</h3>
-          {subtitle && <p className="text-[12px] text-[#6B7280]">{subtitle}</p>}
+          <h3 className="font-serif-display text-[20px] font-normal tracking-[-0.015em] text-[#141312] leading-snug">
+            {title}
+          </h3>
+          {subtitle && <p className="text-[12.5px] text-[#6e6a62] mt-0.5">{subtitle}</p>}
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
           {headerRightExtra}
-          <div className="inline-flex rounded-[8px] border border-[#E5E7EB] bg-[#F9FAFB] p-0.5">
+          <div className="inline-flex rounded-full border border-[#ded8ca] bg-[#e5dfd2]/75 p-0.5">
             {(['daily', 'weekly', 'monthly'] as const).map((r) => (
               <button
                 key={r}
                 type="button"
                 onClick={() => setRange(r)}
-                className={`px-2.5 py-1 rounded-[6px] text-[12px] font-medium capitalize cursor-pointer ${
+                className={`px-3 py-1 rounded-full text-[12px] font-medium capitalize cursor-pointer transition-colors ${
                   range === r
-                    ? 'bg-white text-[#1F2937] font-semibold shadow-2xs'
-                    : 'text-[#6B7280] hover:text-[#1F2937]'
+                    ? 'bg-[#efebe1] text-[#141312] font-semibold shadow-2xs'
+                    : 'text-[#6e6a62] hover:text-[#141312]'
                 }`}
               >
                 {rangeLabels[r]}
@@ -169,7 +175,7 @@ export const AreaTrendChart: React.FC<{
       <svg viewBox="0 0 640 215" className="w-full h-52 overflow-visible">
         <defs>
           <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor={accentColor} stopOpacity="0.2" />
+            <stop offset="0%" stopColor={accentColor} stopOpacity="0.22" />
             <stop offset="100%" stopColor={accentColor} stopOpacity="0.01" />
           </linearGradient>
         </defs>
@@ -178,8 +184,8 @@ export const AreaTrendChart: React.FC<{
           const y = 172 - ratio * 154;
           return (
             <g key={ratio}>
-              <line x1="24" y1={y} x2="616" y2={y} stroke="#E5E7EB" strokeDasharray="3 3" />
-              <text x="0" y={y + 4} fontSize="10.5" fill="#9CA3AF" className="font-mono-custom">
+              <line x1="24" y1={y} x2="616" y2={y} stroke="#ded8ca" strokeDasharray="3 3" />
+              <text x="0" y={y + 4} fontSize="10.5" fill="#6e6a62" className="font-mono-tech">
                 {valuePrefix}
                 {Math.round(maxVal * ratio).toLocaleString()}
               </text>
@@ -192,9 +198,9 @@ export const AreaTrendChart: React.FC<{
 
         {points.map((pt) => (
           <g key={pt.label}>
-            <circle cx={pt.x} cy={pt.y} r="4" fill="#FFFFFF" stroke={accentColor} strokeWidth="2.2" />
+            <circle cx={pt.x} cy={pt.y} r="4" fill="#efebe1" stroke={accentColor} strokeWidth="2.2" />
             <title>{`${pt.label}: ${valuePrefix}${pt.value.toLocaleString()}`}</title>
-            <text x={pt.x} y="204" textAnchor="middle" fontSize="11" fill="#6B7280">
+            <text x={pt.x} y="204" textAnchor="middle" fontSize="11" fill="#6e6a62">
               {pt.label}
             </text>
           </g>
@@ -216,8 +222,10 @@ export const DonutDistributionCard: React.FC<{
   let cumulative = 0;
 
   return (
-    <div className="bg-white/95 backdrop-blur-sm rounded-[14px] border border-[#E5E7EB] p-5 flex flex-col justify-between gap-4">
-      <h3 className="text-[16px] font-semibold text-[#1F2937]">{title}</h3>
+    <div className="card-note p-5 sm:p-6 flex flex-col justify-between gap-4">
+      <h3 className="font-serif-display text-[20px] font-normal tracking-[-0.015em] text-[#141312] leading-snug">
+        {title}
+      </h3>
       <div className="flex flex-col sm:flex-row items-center justify-between gap-5 my-auto">
         <div className="space-y-3 w-full sm:w-auto flex-1">
           {items.map((item) => (
@@ -227,8 +235,8 @@ export const DonutDistributionCard: React.FC<{
                 style={{ backgroundColor: item.color }}
               />
               <div className="min-w-0">
-                <p className="text-[13px] font-semibold text-[#1F2937] truncate">{item.label}</p>
-                <p className="text-[11.5px] text-[#6B7280]">{item.sublabel}</p>
+                <p className="text-[13px] font-semibold text-[#141312] truncate">{item.label}</p>
+                <p className="text-[11.5px] text-[#6e6a62]">{item.sublabel}</p>
               </div>
             </div>
           ))}
@@ -236,7 +244,7 @@ export const DonutDistributionCard: React.FC<{
 
         <div className="relative h-36 w-36 shrink-0 flex items-center justify-center">
           <svg viewBox="0 0 132 132" className="h-full w-full -rotate-90">
-            <circle cx="66" cy="66" r={radius} fill="none" stroke="#F3F4F6" strokeWidth="16" />
+            <circle cx="66" cy="66" r={radius} fill="none" stroke="#e5dfd2" strokeWidth="16" />
             {items.map((item) => {
               const segLen = (item.value / total) * circumference;
               const offset = -cumulative;
@@ -258,8 +266,12 @@ export const DonutDistributionCard: React.FC<{
             })}
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-            <span className="text-[19px] font-bold text-[#1F2937] leading-none">{centerValue}</span>
-            <span className="text-[10.5px] text-[#6B7280] mt-1">{centerLabel}</span>
+            <span className="font-serif-display text-[22px] font-normal text-[#141312] leading-none">
+              {centerValue}
+            </span>
+            <span className="text-[10.5px] font-mono-tech uppercase tracking-wider text-[#6e6a62] mt-1">
+              {centerLabel}
+            </span>
           </div>
         </div>
       </div>

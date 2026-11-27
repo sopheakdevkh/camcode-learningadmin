@@ -166,19 +166,19 @@ export const DashboardPage: React.FC = () => {
       label: categories[0] ? pickText(categories[0].name) : 'Digital Marketing',
       sublabel: `${categories[0]?.courseCount ?? 18} ${t.pages.dashboard.coursesUnit}`,
       value: 34,
-      color: '#2563EB',
+      color: '#1c5b48',
     },
     {
       label: categories[1] ? pickText(categories[1].name) : 'Software Development',
       sublabel: `${categories[1]?.courseCount ?? 24} ${t.pages.dashboard.coursesUnit}`,
       value: 38,
-      color: '#0891B2',
+      color: '#2D7A62',
     },
     {
       label: categories[3] ? pickText(categories[3].name) : 'Business & Data AI',
       sublabel: `${(categories[3]?.courseCount ?? 21) + (categories[4]?.courseCount ?? 14)} ${t.pages.dashboard.coursesUnit}`,
       value: 28,
-      color: '#16A34A',
+      color: '#B8862D',
     },
   ];
 
@@ -190,7 +190,7 @@ export const DashboardPage: React.FC = () => {
       label: pickText(c.title),
       value: c.completionRate,
       displayValue: `${c.completionRate}% ${t.pages.dashboard.completionLabel}`,
-      color: '#16A34A',
+      color: '#1c5b48',
     }));
 
   const firstName = currentAdmin?.name.split(' ')[0] ?? 'Admin';
@@ -198,25 +198,31 @@ export const DashboardPage: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Greeting Header + Date Filter + Quick Actions */}
-      <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
+      <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-4 pb-1">
         <div>
-          <h1 className="text-[24px] sm:text-[28px] font-bold text-[#0F172A] tracking-tight">
+          <p className="swiss-eyebrow mb-1.5">
+            <span className="swiss-dot" />
+            Platform Telemetry
+          </p>
+          <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">
             {t.pages.dashboardGreeting} {firstName}!
           </h1>
-          <p className="text-[14px] text-[#64748B] mt-0.5">
+          <p className="text-[14px] text-[#6e6a62] mt-1">
             {t.pages.dashboardSubtitle}
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <div className="inline-flex rounded-[8px] border border-[#E5E7EB] bg-white p-0.5">
+          <div className="inline-flex rounded-full border border-[#ded8ca] bg-[#e5dfd2]/75 p-0.5">
             {(['7d', '30d', '90d', 'ytd'] as const).map((r) => (
               <button
                 key={r}
                 type="button"
                 onClick={() => setDateRange(r)}
-                className={`px-2.5 py-1 rounded-[6px] text-[12px] font-semibold uppercase cursor-pointer ${
-                  dateRange === r ? 'bg-[#2563EB] text-white' : 'text-[#6B7280] hover:text-[#1F2937]'
+                className={`px-3 py-1 rounded-full text-[11.5px] font-mono-tech font-medium uppercase cursor-pointer transition-colors ${
+                  dateRange === r
+                    ? 'bg-[#1c5b48] text-white'
+                    : 'text-[#6e6a62] hover:text-[#141312]'
                 }`}
               >
                 {r}
@@ -255,59 +261,59 @@ export const DashboardPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Primary 4 KPI Cards (matching clean reference layout) */}
+      {/* Primary 4 KPI Cards */}
       <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         <StatCard
           label={t.pages.dashboard.totalRevenue}
           value={`$${(36400 + paidRevenue).toLocaleString()}`}
           delta="+21.3%"
-          iconBgClass="bg-[#EFF6FF] text-[#2563EB]"
+          iconBgClass="bg-[#e4ede7] text-[#1c5b48] border border-[#c5d6cb]"
           icon={<DollarSign className="h-5 w-5" />}
         />
         <StatCard
           label={t.pages.dashboard.totalMembers}
           value={(1480 + members.length).toLocaleString()}
           delta="+14.2%"
-          iconBgClass="bg-[#F0FDF4] text-[#16A34A]"
+          iconBgClass="bg-[#e4ede7] text-[#15463a] border border-[#c5d6cb]"
           icon={<Users className="h-5 w-5" />}
         />
         <StatCard
           label={t.pages.dashboard.totalEnrollments}
           value={totalEnrollments.toLocaleString()}
           delta="+18.6%"
-          iconBgClass="bg-[#ECFEFF] text-[#0891B2]"
+          iconBgClass="bg-[#EDF3F7] text-[#1E4B6E] border border-[#C8DBE6]"
           icon={<BookOpen className="h-5 w-5" />}
         />
         <StatCard
           label={t.pages.dashboard.activeSubscriptions}
           value={(245 + activeSubs).toLocaleString()}
           delta="+9.4%"
-          iconBgClass="bg-[#FFFBEB] text-[#D97706]"
+          iconBgClass="bg-[#FDF3DC] text-[#8a5008] border border-[#EBD2A0]"
           icon={<RefreshCw className="h-5 w-5" />}
         />
       </section>
 
-      {/* Secondary 4 KPI Strip (completing all 8 required platform KPIs cleanly) */}
+      {/* Secondary 4 KPI Strip */}
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
           label={t.pages.dashboard.activeMembers}
           value={(1120 + activeMembers).toLocaleString()}
           delta={`76% ${t.pages.dashboard.activePct}`}
-          iconBgClass="bg-[#F0FDF4] text-[#16A34A]"
+          iconBgClass="bg-[#e4ede7] text-[#1c5b48] border border-[#c5d6cb]"
           icon={<Activity className="h-4.5 w-4.5" />}
         />
         <StatCard
           label={t.pages.dashboard.totalCourses}
           value={courses.length}
           delta={`${publishedCourses} ${t.pages.dashboard.liveLabel}`}
-          iconBgClass="bg-[#EFF6FF] text-[#2563EB]"
+          iconBgClass="bg-[#e5dfd2] text-[#141312] border border-[#ded8ca]"
           icon={<BookOpen className="h-4.5 w-4.5" />}
         />
         <StatCard
           label={t.pages.dashboard.publishedCourses}
           value={publishedCourses}
           delta={t.pages.dashboard.catalogReady}
-          iconBgClass="bg-[#ECFEFF] text-[#0891B2]"
+          iconBgClass="bg-[#EDF3F7] text-[#1E4B6E] border border-[#C8DBE6]"
           icon={<Award className="h-4.5 w-4.5" />}
         />
         <StatCard
@@ -315,7 +321,7 @@ export const DashboardPage: React.FC = () => {
           value={pendingPayments}
           delta={pendingPayments > 0 ? t.pages.dashboard.needsReview : t.pages.dashboard.allClear}
           deltaPositive={pendingPayments === 0}
-          iconBgClass="bg-[#FEF2F2] text-[#DC2626]"
+          iconBgClass="bg-[#FEF2F2] text-[#a5331f] border border-[#FECACA]"
           icon={<Clock className="h-4.5 w-4.5" />}
         />
       </section>
@@ -336,23 +342,23 @@ export const DashboardPage: React.FC = () => {
             subtitle={t.pages.dashboard.analyticsSubtitle}
             seriesByRange={areaSeries}
             valuePrefix={chartTab === 'revenue' ? '$' : ''}
-            accentColor="#2563EB"
+            accentColor="#1c5b48"
             rangeLabels={{
               daily: t.pages.dashboard.daily,
               weekly: t.pages.dashboard.weekly,
               monthly: t.pages.dashboard.monthly,
             }}
             headerRightExtra={
-              <div className="inline-flex rounded-[8px] border border-[#E5E7EB] bg-[#F9FAFB] p-0.5 text-[11.5px]">
+              <div className="inline-flex rounded-full border border-[#ded8ca] bg-[#e5dfd2]/75 p-0.5 text-[11.5px]">
                 {(['revenue', 'enrollments', 'members', 'subscriptions'] as const).map((tab) => (
                   <button
                     key={tab}
                     type="button"
                     onClick={() => setChartTab(tab)}
-                    className={`px-2 py-1 rounded-[6px] cursor-pointer ${
+                    className={`px-2.5 py-1 rounded-full cursor-pointer transition-colors ${
                       chartTab === tab
-                        ? 'bg-[#2563EB] text-white font-semibold'
-                        : 'text-[#6B7280] hover:text-[#1F2937]'
+                        ? 'bg-[#1c5b48] text-white font-semibold'
+                        : 'text-[#6e6a62] hover:text-[#141312]'
                     }`}
                   >
                     {tab === 'revenue'
@@ -369,18 +375,18 @@ export const DashboardPage: React.FC = () => {
           />
         </div>
 
-        <div className="xl:col-span-4 bg-white/95 backdrop-blur-sm rounded-[14px] border border-[#E5E7EB] p-5 flex flex-col justify-between gap-4">
+        <div className="xl:col-span-4 card-note p-5 sm:p-6 flex flex-col justify-between gap-4">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-[16px] font-semibold text-[#1F2937]">
+              <h2 className="font-serif-display text-[20px] font-normal tracking-[-0.015em] text-[#141312]">
                 {t.pages.dashboard.popularCourses}
               </h2>
-              <Link to="/courses" className="text-[12.5px] font-semibold text-[#2563EB] hover:underline">
+              <Link to="/courses" className="text-[12.5px] font-semibold text-[#1c5b48] hover:underline">
                 {t.pages.dashboard.seeAll}
               </Link>
             </div>
 
-            <div className="divide-y divide-[#E5E7EB]">
+            <div className="divide-y divide-[#ded8ca]/75">
               {[...courses]
                 .sort((a, b) => b.enrollmentsCount - a.enrollmentsCount)
                 .slice(0, 4)
@@ -391,20 +397,20 @@ export const DashboardPage: React.FC = () => {
                     className="py-3 first:pt-1 last:pb-1 flex items-center justify-between gap-3 group"
                   >
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className="h-9 w-9 rounded-[9px] bg-[#EFF6FF] text-[#2563EB] font-bold text-[11px] flex items-center justify-center shrink-0">
+                      <div className="h-9 w-9 rounded-xl bg-[#e4ede7] text-[#1c5b48] border border-[#c5d6cb] font-mono-tech font-semibold text-[11px] flex items-center justify-center shrink-0">
                         {c.durationHours}H
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[13px] font-semibold text-[#1F2937] group-hover:text-[#2563EB] truncate">
+                        <p className="text-[13px] font-semibold text-[#141312] group-hover:text-[#1c5b48] truncate transition-colors">
                           {pickText(c.title)}
                         </p>
-                        <p className="text-[11.5px] text-[#6B7280]">
+                        <p className="text-[11.5px] text-[#6e6a62]">
                           {c.completionRate}% {t.pages.dashboard.completionLabel} ·{' '}
                           {c.price === 0 ? t.pages.dashboard.freeLabel : `$${c.price}`}
                         </p>
                       </div>
                     </div>
-                    <span className="text-[11.5px] font-mono-custom text-[#6B7280] shrink-0">
+                    <span className="text-[11.5px] font-mono-tech text-[#6e6a62] shrink-0">
                       {c.enrollmentsCount.toLocaleString()}
                     </span>
                   </Link>
@@ -425,24 +431,24 @@ export const DashboardPage: React.FC = () => {
           />
         </div>
 
-        <div className="xl:col-span-7 bg-white/95 backdrop-blur-sm rounded-[14px] border border-[#E5E7EB] p-5 space-y-4">
+        <div className="xl:col-span-7 card-note p-5 sm:p-6 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-[16px] font-semibold text-[#1F2937]">
+            <h2 className="font-serif-display text-[20px] font-normal tracking-[-0.015em] text-[#141312]">
               {t.pages.dashboard.latestOrders}
             </h2>
-            <Link to="/orders" className="text-[12.5px] font-semibold text-[#2563EB] hover:underline">
+            <Link to="/orders" className="text-[12.5px] font-semibold text-[#1c5b48] hover:underline">
               {t.pages.dashboard.seeAll}
             </Link>
           </div>
 
-          <div className="divide-y divide-[#E5E7EB]">
+          <div className="divide-y divide-[#ded8ca]/75">
             {orders.slice(0, 4).map((ord) => (
               <div
                 key={ord.id}
                 className="py-3 first:pt-1 last:pb-1 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <span className="h-9 w-9 rounded-full bg-[#EFF6FF] text-[#2563EB] text-[12px] font-bold flex items-center justify-center shrink-0">
+                  <span className="h-9 w-9 rounded-full bg-[#e4ede7] text-[#1c5b48] border border-[#c5d6cb] text-[12px] font-semibold flex items-center justify-center shrink-0">
                     {ord.memberName
                       .split(' ')
                       .map((p) => p[0])
@@ -450,15 +456,15 @@ export const DashboardPage: React.FC = () => {
                       .join('')}
                   </span>
                   <div className="min-w-0">
-                    <p className="text-[13.5px] font-semibold text-[#1F2937] truncate">
+                    <p className="text-[13.5px] font-semibold text-[#141312] truncate">
                       {ord.memberName}
                     </p>
-                    <p className="text-[12px] text-[#6B7280] truncate">{ord.itemName}</p>
+                    <p className="text-[12px] text-[#6e6a62] truncate">{ord.itemName}</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 shrink-0">
-                  <span className="font-mono-custom text-[12.5px] font-semibold text-[#1F2937]">
+                  <span className="font-mono-tech text-[12.5px] font-semibold text-[#141312]">
                     ${ord.amount.toFixed(2)}
                   </span>
                   <Badge
@@ -494,16 +500,16 @@ export const DashboardPage: React.FC = () => {
           />
         </div>
 
-        <div className="lg:col-span-7 bg-white/95 backdrop-blur-sm rounded-[14px] border border-[#E5E7EB] p-5 space-y-4">
+        <div className="lg:col-span-7 card-note p-5 sm:p-6 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-[15px] font-semibold text-[#1F2937]">
+            <h2 className="font-serif-display text-[20px] font-normal tracking-[-0.015em] text-[#141312]">
               {t.pages.dashboard.recentActivity}
             </h2>
-            <Link to="/system/audit-logs" className="text-[12.5px] font-medium text-[#2563EB] hover:underline">
+            <Link to="/system/audit-logs" className="text-[12.5px] font-semibold text-[#1c5b48] hover:underline">
               {t.pages.dashboard.auditLogsLink}
             </Link>
           </div>
-          <div className="divide-y divide-[#E5E7EB]">
+          <div className="divide-y divide-[#ded8ca]/75">
             {auditLogs.slice(0, 4).map((log) => (
               <div
                 key={log.id}
@@ -511,9 +517,11 @@ export const DashboardPage: React.FC = () => {
               >
                 <div className="flex items-center gap-2 min-w-0">
                   <Badge tone="primary">{log.module}</Badge>
-                  <span className="text-[#1F2937] truncate">{log.action}</span>
+                  <span className="text-[#141312] truncate">{log.action}</span>
                 </div>
-                <span className="text-[#6B7280] shrink-0">{log.timestamp}</span>
+                <span className="font-mono-tech text-[11.5px] text-[#6e6a62] shrink-0">
+                  {log.timestamp}
+                </span>
               </div>
             ))}
           </div>

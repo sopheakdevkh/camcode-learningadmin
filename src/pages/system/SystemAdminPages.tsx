@@ -20,7 +20,7 @@ export const AuditLogsPage: React.FC<{ mode?: 'audit' | 'activity' }> = ({ mode 
       <div className="space-y-5">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">
               {mode === 'audit' ? t.pages.auditLogs.title : t.pages.activityLogs.title}
             </h1>
             <p className="text-[14.5px] text-[#475569] mt-1">
@@ -54,14 +54,14 @@ export const AuditLogsPage: React.FC<{ mode?: 'audit' | 'activity' }> = ({ mode 
             l.action.toLowerCase().includes(q)
           }
           columns={[
-            { key: 'time', header: 'Timestamp', render: (l) => <span className="font-mono-custom text-[12px]">{l.timestamp}</span> },
+            { key: 'time', header: 'Timestamp', render: (l) => <span className="font-mono-tech text-[12px]">{l.timestamp}</span> },
             {
               key: 'actor',
               header: 'Administrator',
               render: (l) => (
                 <div>
                   <p className="font-semibold">{l.actorName}</p>
-                  <p className="text-[11px] text-[#6B7280]">{l.actorRole}</p>
+                  <p className="text-[11px] text-[#6e6a62]">{l.actorRole}</p>
                 </div>
               ),
             },
@@ -72,11 +72,11 @@ export const AuditLogsPage: React.FC<{ mode?: 'audit' | 'activity' }> = ({ mode 
               render: (l) => (
                 <div>
                   <p className="font-medium">{l.action}</p>
-                  <p className="text-[11.5px] text-[#6B7280]">{l.details}</p>
+                  <p className="text-[11.5px] text-[#6e6a62]">{l.details}</p>
                 </div>
               ),
             },
-            { key: 'ip', header: 'IP Address', render: (l) => <span className="font-mono-custom text-[12px]">{l.ipAddress}</span> },
+            { key: 'ip', header: 'IP Address', render: (l) => <span className="font-mono-tech text-[12px]">{l.ipAddress}</span> },
             {
               key: 'result',
               header: 'Result',
@@ -106,8 +106,8 @@ export const SystemSettingsPage: React.FC = () => {
     <PermissionGuard module="settings" action="view">
       <div className="max-w-3xl space-y-5">
         <div>
-          <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight flex items-center gap-2">
-            <Settings className="h-5 w-5 text-[#2563EB]" />
+          <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15] flex items-center gap-2">
+            <Settings className="h-5 w-5 text-[#1c5b48]" />
             {t.pages.settings.title}
           </h1>
           <p className="text-[14.5px] text-[#475569] mt-1">
@@ -116,12 +116,12 @@ export const SystemSettingsPage: React.FC = () => {
         </div>
 
         {saved && (
-          <div className="p-3 rounded-[8px] bg-[#F0FDF4] border border-[#BBF7D0] text-[#15803D] text-[13px]">
+          <div className="p-3 rounded-xl bg-[#e4ede7] border border-[#BBF7D0] text-[#15463a] text-[13px]">
             System configuration saved to Port 4000 settings store.
           </div>
         )}
 
-        <form onSubmit={handleSave} className="bg-white rounded-[12px] border border-[#E5E7EB] p-6 space-y-4">
+        <form onSubmit={handleSave} className="card-note p-6 space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Input
               label="Platform Name"
@@ -162,7 +162,7 @@ export const SystemSettingsPage: React.FC = () => {
             />
           </div>
 
-          <div className="space-y-2 pt-2 border-t border-[#E5E7EB] text-[13px]">
+          <div className="space-y-2 pt-2 border-t border-[#ded8ca] text-[13px]">
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -199,7 +199,7 @@ export const IntegrationsPage: React.FC = () => {
   const [testedId, setTestedId] = useState<string | null>(null);
 
   const integrations = [
-    { id: 'int-api', name: 'CamcodeLearn Core Backend API', endpoint: 'http://localhost:4000/api', status: 'Healthy · 18ms' },
+    { id: 'int-api', name: 'Camcode Core Backend API', endpoint: 'http://localhost:4000/api', status: 'Healthy · 18ms' },
     { id: 'int-cf', name: 'Cloudflare Stream Video Host', endpoint: 'Signed JWT Playback + Webhooks', status: 'Connected' },
     { id: 'int-khqr', name: 'KHQR / Bakong Payment Gateway', endpoint: 'HMAC Webhook Verified', status: 'Connected' },
     { id: 'int-stripe', name: 'Stripe International Cards', endpoint: 'Webhook Signing Active', status: 'Connected' },
@@ -210,8 +210,8 @@ export const IntegrationsPage: React.FC = () => {
     <PermissionGuard module="integrations" action="view">
       <div className="space-y-5 max-w-4xl">
         <div>
-          <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight flex items-center gap-2">
-            <Plug className="h-5 w-5 text-[#2563EB]" />
+          <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15] flex items-center gap-2">
+            <Plug className="h-5 w-5 text-[#1c5b48]" />
             {t.pages.integrations.title}
           </h1>
           <p className="text-[14.5px] text-[#475569] mt-1">
@@ -221,10 +221,10 @@ export const IntegrationsPage: React.FC = () => {
 
         <div className="space-y-3">
           {integrations.map((item) => (
-            <div key={item.id} className="bg-white rounded-[12px] border border-[#E5E7EB] p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div key={item.id} className="card-note p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <p className="font-semibold text-[14.5px] text-[#1F2937]">{item.name}</p>
-                <p className="text-[12px] font-mono-custom text-[#6B7280]">{item.endpoint}</p>
+                <p className="font-semibold text-[14.5px] text-[#141312]">{item.name}</p>
+                <p className="text-[12px] font-mono-tech text-[#6e6a62]">{item.endpoint}</p>
               </div>
               <div className="flex items-center gap-2">
                 <Badge tone="success">
@@ -267,8 +267,8 @@ export const MaintenancePage: React.FC = () => {
       <div className="space-y-5 max-w-4xl">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight flex items-center gap-2">
-              <Database className="h-5 w-5 text-[#2563EB]" />
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15] flex items-center gap-2">
+              <Database className="h-5 w-5 text-[#1c5b48]" />
               {t.pages.maintenance.title}
             </h1>
             <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.maintenance.subtitle}</p>
@@ -289,19 +289,19 @@ export const MaintenancePage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-white rounded-[12px] border border-[#E5E7EB] p-4">
-            <p className="text-[12px] text-[#6B7280]">Database Health</p>
-            <p className="text-[18px] font-bold text-[#16A34A] mt-1 flex items-center gap-1.5">
+          <div className="card-note p-4">
+            <p className="text-[12px] text-[#6e6a62]">Database Health</p>
+            <p className="text-[18px] font-bold text-[#1c5b48] mt-1 flex items-center gap-1.5">
               <Server className="h-4 w-4" /> Operational (99.98%)
             </p>
           </div>
-          <div className="bg-white rounded-[12px] border border-[#E5E7EB] p-4">
-            <p className="text-[12px] text-[#6B7280]">Storage Usage</p>
-            <p className="text-[18px] font-bold text-[#1F2937] mt-1">18.4 GB / 100 GB</p>
+          <div className="card-note p-4">
+            <p className="text-[12px] text-[#6e6a62]">Storage Usage</p>
+            <p className="text-[18px] font-bold text-[#141312] mt-1">18.4 GB / 100 GB</p>
           </div>
-          <div className="bg-white rounded-[12px] border border-[#E5E7EB] p-4 flex items-center justify-between">
+          <div className="card-note p-4 flex items-center justify-between">
             <div>
-              <p className="text-[12px] text-[#6B7280]">Maintenance Mode</p>
+              <p className="text-[12px] text-[#6e6a62]">Maintenance Mode</p>
               <p className="text-[15px] font-bold mt-1">{settings.maintenanceMode ? 'Enabled' : 'Disabled'}</p>
             </div>
             {can('maintenance', 'edit') && (
@@ -316,16 +316,16 @@ export const MaintenancePage: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-[12px] border border-[#E5E7EB] p-5 space-y-3">
+        <div className="card-note p-5 space-y-3">
           <h2 className="text-[15px] font-semibold flex items-center gap-2">
-            <ShieldAlert className="h-4 w-4 text-[#2563EB]" />
+            <ShieldAlert className="h-4 w-4 text-[#1c5b48]" />
             Snapshot Backup History
           </h2>
-          <div className="divide-y divide-[#E5E7EB] text-[13px]">
+          <div className="divide-y divide-[#ded8ca] text-[13px]">
             {backups.map((b) => (
               <div key={b.id} className="py-2.5 flex items-center justify-between">
-                <span className="font-mono-custom">{b.createdAt}</span>
-                <span className="text-[#6B7280]">{b.size}</span>
+                <span className="font-mono-tech">{b.createdAt}</span>
+                <span className="text-[#6e6a62]">{b.size}</span>
                 <Badge tone="success">{b.status}</Badge>
               </div>
             ))}

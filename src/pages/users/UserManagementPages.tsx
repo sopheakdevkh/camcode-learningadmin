@@ -54,7 +54,7 @@ export const MembersPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.members.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.members.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">
               {t.pages.members.subtitle}
             </p>
@@ -91,14 +91,14 @@ export const MembersPage: React.FC = () => {
             m.name.toLowerCase().includes(q) || m.email.toLowerCase().includes(q) || m.id.toLowerCase().includes(q)
           }
           columns={[
-            { key: 'id', header: 'Member ID', render: (m) => <span className="font-mono-custom text-[12px]">{m.id}</span> },
+            { key: 'id', header: 'Member ID', render: (m) => <span className="font-mono-tech text-[12px]">{m.id}</span> },
             {
               key: 'name',
               header: 'Name & Email',
               render: (m) => (
                 <div>
-                  <p className="font-semibold text-[#1F2937]">{m.name}</p>
-                  <p className="text-[11.5px] text-[#6B7280]">{m.email}</p>
+                  <p className="font-semibold text-[#141312]">{m.name}</p>
+                  <p className="text-[11.5px] text-[#6e6a62]">{m.email}</p>
                 </div>
               ),
             },
@@ -113,7 +113,7 @@ export const MembersPage: React.FC = () => {
                 </Badge>
               ),
             },
-            { key: 'login', header: 'Last Login', render: (m) => <span className="text-[#6B7280]">{m.lastLogin}</span> },
+            { key: 'login', header: 'Last Login', render: (m) => <span className="text-[#6e6a62]">{m.lastLogin}</span> },
             {
               key: 'actions',
               header: 'Actions',
@@ -123,7 +123,7 @@ export const MembersPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setSelectedMember(m)}
-                    className="p-1.5 rounded hover:bg-[#F3F4F6] text-[#2563EB] cursor-pointer"
+                    className="p-1.5 rounded hover:bg-[#e5dfd2] text-[#1c5b48] cursor-pointer"
                     title="View Member Details"
                   >
                     <Eye className="h-4 w-4" />
@@ -132,7 +132,7 @@ export const MembersPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => toggleStatus(m, m.status === 'active' ? 'suspended' : 'active')}
-                      className="px-2 py-1 rounded text-[11px] font-semibold border border-[#E5E7EB] hover:bg-[#F9FAFB] cursor-pointer"
+                      className="px-2 py-1 rounded text-[11px] font-semibold border border-[#ded8ca] hover:bg-[#f6f3ec] cursor-pointer"
                     >
                       {m.status === 'active' ? 'Suspend' : 'Activate'}
                     </button>
@@ -146,40 +146,40 @@ export const MembersPage: React.FC = () => {
         <Modal open={Boolean(selectedMember)} onClose={() => setSelectedMember(null)} title="Member Profile & History" maxWidthClass="max-w-2xl">
           {selectedMember && (
             <div className="space-y-4 text-[13px]">
-              <div className="flex items-center justify-between p-4 rounded-[10px] bg-[#F9FAFB] border border-[#E5E7EB]">
+              <div className="flex items-center justify-between p-4 rounded-xl bg-[#f6f3ec] border border-[#ded8ca]">
                 <div>
-                  <h3 className="text-[17px] font-bold text-[#1F2937]">{selectedMember.name}</h3>
-                  <p className="text-[#6B7280]">{selectedMember.email}</p>
+                  <h3 className="font-serif-display text-[20px] font-normal text-[#141312] tracking-[-0.015em]">{selectedMember.name}</h3>
+                  <p className="text-[#6e6a62]">{selectedMember.email}</p>
                 </div>
                 <Badge tone="primary">{selectedMember.membership} plan</Badge>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <div className="p-3 rounded-lg border border-[#E5E7EB]">
-                  <p className="text-[11px] text-[#6B7280]">Enrolled</p>
+                <div className="p-3 rounded-lg border border-[#ded8ca]">
+                  <p className="text-[11px] text-[#6e6a62]">Enrolled</p>
                   <p className="text-[18px] font-bold">{selectedMember.enrolledCoursesCount}</p>
                 </div>
-                <div className="p-3 rounded-lg border border-[#E5E7EB]">
-                  <p className="text-[11px] text-[#6B7280]">Completed</p>
+                <div className="p-3 rounded-lg border border-[#ded8ca]">
+                  <p className="text-[11px] text-[#6e6a62]">Completed</p>
                   <p className="text-[18px] font-bold">{selectedMember.completedCoursesCount}</p>
                 </div>
-                <div className="p-3 rounded-lg border border-[#E5E7EB]">
-                  <p className="text-[11px] text-[#6B7280]">Certificates</p>
+                <div className="p-3 rounded-lg border border-[#ded8ca]">
+                  <p className="text-[11px] text-[#6e6a62]">Certificates</p>
                   <p className="text-[18px] font-bold">{selectedMember.certificatesCount}</p>
                 </div>
-                <div className="p-3 rounded-lg border border-[#E5E7EB]">
-                  <p className="text-[11px] text-[#6B7280]">Total Spent</p>
+                <div className="p-3 rounded-lg border border-[#ded8ca]">
+                  <p className="text-[11px] text-[#6e6a62]">Total Spent</p>
                   <p className="text-[18px] font-bold">${selectedMember.totalSpent}</p>
                 </div>
               </div>
               <div>
                 <p className="font-semibold mb-2">Recent Orders</p>
                 {orders.filter((o) => o.memberId === selectedMember.id).length === 0 ? (
-                  <p className="text-[#6B7280]">No orders recorded.</p>
+                  <p className="text-[#6e6a62]">No orders recorded.</p>
                 ) : (
                   orders
                     .filter((o) => o.memberId === selectedMember.id)
                     .map((o) => (
-                      <div key={o.id} className="flex justify-between py-2 border-b border-[#E5E7EB]">
+                      <div key={o.id} className="flex justify-between py-2 border-b border-[#ded8ca]">
                         <span>{o.orderNumber} · {o.itemName}</span>
                         <span className="font-semibold">${o.amount} ({o.status})</span>
                       </div>
@@ -218,7 +218,7 @@ export const MembersPage: React.FC = () => {
             <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
             <div>
               <label className="block text-[12.5px] font-medium mb-1">Initial Membership</label>
-              <select value={membership} onChange={(e) => setMembership(e.target.value as 'free' | 'basic' | 'premium')} className="w-full h-9 px-2.5 rounded-[8px] border border-[#E5E7EB] text-[13px]">
+              <select value={membership} onChange={(e) => setMembership(e.target.value as 'free' | 'basic' | 'premium')} className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]">
                 <option value="free">Free</option>
                 <option value="basic">Basic</option>
                 <option value="premium">Premium</option>
@@ -270,7 +270,7 @@ export const AdministratorsPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.administrators.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.administrators.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.administrators.subtitle}</p>
           </div>
           {can('administrators', 'create') && (
@@ -292,7 +292,7 @@ export const AdministratorsPage: React.FC = () => {
               render: (a) => (
                 <div>
                   <p className="font-semibold">{a.name}</p>
-                  <p className="text-[11.5px] text-[#6B7280]">{a.email}</p>
+                  <p className="text-[11.5px] text-[#6e6a62]">{a.email}</p>
                 </div>
               ),
             },
@@ -350,7 +350,7 @@ export const AdministratorsPage: React.FC = () => {
             <Input label="Admin Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
             <div>
               <label className="block text-[12.5px] font-medium mb-1">Role</label>
-              <select value={roleId} onChange={(e) => setRoleId(e.target.value)} className="w-full h-9 px-2.5 rounded-[8px] border border-[#E5E7EB] text-[13px]">
+              <select value={roleId} onChange={(e) => setRoleId(e.target.value)} className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]">
                 {roles.map((r) => (
                   <option key={r.id} value={r.id}>{r.name}</option>
                 ))}
@@ -424,7 +424,7 @@ export const RolesPermissionsPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.roles.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.roles.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">
               {t.pages.roles.subtitle}
             </p>
@@ -443,10 +443,10 @@ export const RolesPermissionsPage: React.FC = () => {
               key={r.id}
               type="button"
               onClick={() => setSelectedRoleId(r.id)}
-              className={`px-3.5 py-2 rounded-[8px] text-[13px] font-semibold flex items-center gap-2 cursor-pointer border ${
+              className={`px-3.5 py-2 rounded-xl text-[13px] font-semibold flex items-center gap-2 cursor-pointer border ${
                 r.id === selectedRole?.id
-                  ? 'bg-[#2563EB] text-white border-[#2563EB]'
-                  : 'bg-white text-[#374151] border-[#E5E7EB] hover:bg-[#F9FAFB]'
+                  ? 'bg-[#1c5b48] text-white border-[#1c5b48]'
+                  : 'bg-[#efebe1] text-[#4c4842] border-[#ded8ca] hover:bg-[#f6f3ec]'
               }`}
             >
               <Shield className="h-3.5 w-3.5" />
@@ -456,11 +456,11 @@ export const RolesPermissionsPage: React.FC = () => {
         </div>
 
         {selectedRole && (
-          <div className="bg-white rounded-[12px] border border-[#E5E7EB] overflow-hidden">
-            <div className="p-4 border-b border-[#E5E7EB] flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#F9FAFB]">
+          <div className="card-note overflow-hidden">
+            <div className="p-4 border-b border-[#ded8ca] flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#f6f3ec]">
               <div>
-                <h2 className="text-[15px] font-bold text-[#1F2937]">{selectedRole.name}</h2>
-                <p className="text-[12.5px] text-[#6B7280]">{selectedRole.description}</p>
+                <h2 className="text-[15px] font-bold text-[#141312]">{selectedRole.name}</h2>
+                <p className="text-[12.5px] text-[#6e6a62]">{selectedRole.description}</p>
               </div>
               <Badge tone="info">Data Scope: {selectedRole.dataScope}</Badge>
             </div>
@@ -468,17 +468,17 @@ export const RolesPermissionsPage: React.FC = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse text-[13px]">
                 <thead>
-                  <tr className="border-b border-[#E5E7EB] text-[11.5px] uppercase text-[#6B7280] bg-[#F9FAFB]">
+                  <tr className="border-b border-[#ded8ca] text-[11.5px] uppercase text-[#6e6a62] bg-[#f6f3ec]">
                     <th className="py-2.5 px-4">Module</th>
                     {ALL_ACTIONS.map((act) => (
                       <th key={act} className="py-2.5 px-3 text-center capitalize">{act}</th>
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E5E7EB]">
+                <tbody className="divide-y divide-[#ded8ca]">
                   {ALL_MODULES.map((mod) => (
-                    <tr key={mod} className="hover:bg-[#F9FAFB]">
-                      <td className="py-2.5 px-4 font-medium capitalize text-[#1F2937]">
+                    <tr key={mod} className="hover:bg-[#f6f3ec]">
+                      <td className="py-2.5 px-4 font-medium capitalize text-[#141312]">
                         {mod.replace(/_/g, ' ')}
                       </td>
                       {ALL_ACTIONS.map((act) => {
@@ -490,7 +490,7 @@ export const RolesPermissionsPage: React.FC = () => {
                               checked={checked}
                               disabled={!can('roles', 'edit')}
                               onChange={() => togglePerm(mod, act)}
-                              className="h-4 w-4 accent-[#2563EB] cursor-pointer disabled:cursor-not-allowed"
+                              className="h-4 w-4 accent-[#1c5b48] cursor-pointer disabled:cursor-not-allowed"
                             />
                           </td>
                         );
@@ -525,7 +525,7 @@ export const MemberActivityPage: React.FC = () => {
     <PermissionGuard module="member_activity" action="view">
       <div className="space-y-5">
         <div>
-          <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.memberActivity.title}</h1>
+          <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.memberActivity.title}</h1>
           <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.memberActivity.subtitle}</p>
         </div>
         <DataTable

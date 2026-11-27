@@ -49,7 +49,7 @@ export const CertificationsAdminPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.certifications.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.certifications.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.certifications.subtitle}</p>
           </div>
           {can('certifications', 'create') && (
@@ -70,10 +70,10 @@ export const CertificationsAdminPage: React.FC = () => {
               header: 'Certification',
               render: (c) => (
                 <div className="flex items-center gap-2">
-                  <Award className="h-4 w-4 text-[#D97706]" />
+                  <Award className="h-4 w-4 text-[#8a5008]" />
                   <div>
                     <p className="font-semibold">{c.title.en}</p>
-                    <p className="text-[11.5px] text-[#6B7280]">{c.description.en}</p>
+                    <p className="text-[11.5px] text-[#6e6a62]">{c.description.en}</p>
                   </div>
                 </div>
               ),
@@ -169,7 +169,7 @@ export const AssessmentsAdminPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.assessments.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.assessments.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.assessments.subtitle}</p>
           </div>
           {can('assessments', 'create') && (
@@ -265,7 +265,7 @@ export const QuestionBankPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.questionBank.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.questionBank.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.questionBank.subtitle}</p>
           </div>
           <div className="flex gap-2">
@@ -325,7 +325,7 @@ export const QuestionBankPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setQuestions((prev) => prev.filter((x) => x.id !== q.id))}
-                    className="p-1.5 rounded hover:bg-[#FEF2F2] text-[#DC2626] cursor-pointer"
+                    className="p-1.5 rounded hover:bg-[#FEF2F2] text-[#a5331f] cursor-pointer"
                   >
                     <Trash2 className="h-4 w-4" />
                   </button>
@@ -340,14 +340,14 @@ export const QuestionBankPage: React.FC = () => {
             <div className="grid grid-cols-3 gap-3">
               <div>
                 <label className="block text-[12.5px] font-medium mb-1">Type</label>
-                <select value={qType} onChange={(e) => setQType(e.target.value as 'multiple_choice' | 'true_false')} className="w-full h-9 px-2 rounded-[8px] border border-[#E5E7EB] text-[13px]">
+                <select value={qType} onChange={(e) => setQType(e.target.value as 'multiple_choice' | 'true_false')} className="w-full h-9 px-2 rounded-xl border border-[#ded8ca] text-[13px]">
                   <option value="multiple_choice">Multiple Choice</option>
                   <option value="true_false">True / False</option>
                 </select>
               </div>
               <div>
                 <label className="block text-[12.5px] font-medium mb-1">Difficulty</label>
-                <select value={difficulty} onChange={(e) => setDifficulty(e.target.value as DifficultyLevel)} className="w-full h-9 px-2 rounded-[8px] border border-[#E5E7EB] text-[13px]">
+                <select value={difficulty} onChange={(e) => setDifficulty(e.target.value as DifficultyLevel)} className="w-full h-9 px-2 rounded-xl border border-[#ded8ca] text-[13px]">
                   <option value="beginner">Beginner</option>
                   <option value="intermediate">Intermediate</option>
                   <option value="advanced">Advanced</option>
@@ -373,7 +373,7 @@ export const CertificateTemplatesPage: React.FC = () => {
   const [previewTpl, setPreviewTpl] = useState<CertificateTemplate | null>(null);
   const [createOpen, setCreateOpen] = useState(false);
   const [name, setName] = useState('');
-  const [signatoryName, setSignatoryName] = useState('Kosal Rith');
+  const [signatoryName, setSignatoryName] = useState('Sopheak Khoeun');
   const [signatoryTitle, setSignatoryTitle] = useState('Academic Director');
 
   const handleCreate = (e: React.FormEvent) => {
@@ -383,8 +383,8 @@ export const CertificateTemplatesPage: React.FC = () => {
       {
         id: `tpl-${Date.now()}`,
         name,
-        accentColor: '#2563EB',
-        logoText: 'CamcodeLearn Academy',
+        accentColor: '#1c5b48',
+        logoText: 'Camcode Academy',
         signatoryName,
         signatoryTitle,
         includeVerificationQr: true,
@@ -403,7 +403,7 @@ export const CertificateTemplatesPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.templates.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.templates.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">
               {t.pages.templates.subtitle}
             </p>
@@ -417,11 +417,11 @@ export const CertificateTemplatesPage: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {templates.map((tpl) => (
-            <div key={tpl.id} className="bg-white rounded-[12px] border border-[#E5E7EB] p-5 space-y-4">
+            <div key={tpl.id} className="card-note p-5 space-y-4">
               <div className="flex items-start justify-between">
                 <div>
-                  <h2 className="text-[16px] font-bold text-[#1F2937]">{tpl.name}</h2>
-                  <p className="text-[12.5px] text-[#6B7280]">
+                  <h2 className="text-[16px] font-bold text-[#141312]">{tpl.name}</h2>
+                  <p className="text-[12.5px] text-[#6e6a62]">
                     {tpl.signatoryName} · {tpl.signatoryTitle} · {tpl.pdfPaperSize} PDF
                   </p>
                 </div>
@@ -441,13 +441,13 @@ export const CertificateTemplatesPage: React.FC = () => {
 
         <Modal open={Boolean(previewTpl)} onClose={() => setPreviewTpl(null)} title="Certificate Template Preview" maxWidthClass="max-w-2xl">
           {previewTpl && (
-            <div className="border-4 border-double border-[#2563EB]/40 rounded-[12px] p-8 text-center space-y-4 bg-[#F9FAFB]">
-              <p className="text-[12px] font-bold uppercase tracking-widest text-[#2563EB]">{previewTpl.logoText}</p>
-              <h3 className="text-[24px] font-extrabold text-[#1F2937]">Alex Sovann</h3>
-              <p className="text-[13.5px] text-[#4B5563]">has completed <strong>Complete Digital Marketing Course</strong></p>
-              <div className="pt-4 border-t border-[#E5E7EB] flex justify-between text-[12px] text-[#6B7280]">
+            <div className="border-4 border-double border-[#1c5b48]/40 rounded-2xl p-8 text-center space-y-4 bg-[#f6f3ec]">
+              <p className="text-[12px] font-bold uppercase tracking-widest text-[#1c5b48]">{previewTpl.logoText}</p>
+              <h3 className="text-[24px] font-extrabold text-[#141312]">Alex Sovann</h3>
+              <p className="text-[13.5px] text-[#4c4842]">has completed <strong>Complete Digital Marketing Course</strong></p>
+              <div className="pt-4 border-t border-[#ded8ca] flex justify-between text-[12px] text-[#6e6a62]">
                 <span>{previewTpl.signatoryName} — {previewTpl.signatoryTitle}</span>
-                <span className="font-mono-custom">ID: CCL-2026-8492 · verify.camcodelearn.edu</span>
+                <span className="font-mono-tech">ID: CCL-2026-8492 · verify.camcodelearn.edu</span>
               </div>
             </div>
           )}

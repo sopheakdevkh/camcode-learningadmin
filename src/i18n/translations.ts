@@ -3,7 +3,7 @@ import type { Locale } from '@/types';
 export const translations = {
   en: {
     brand: {
-      name: 'CamcodeLearn',
+      name: 'Camcode',
       console: 'Admin Console',
     },
     groups: {
@@ -64,7 +64,7 @@ export const translations = {
     },
     pages: {
       dashboardGreeting: 'Hi',
-      dashboardSubtitle: 'This is your CamcodeLearn platform operations overview.',
+      dashboardSubtitle: 'This is your Camcode platform operations overview.',
       dashboard: {
         createCourse: 'Create Course',
         addVideo: 'Add Video',
@@ -275,7 +275,7 @@ export const translations = {
   },
   km: {
     brand: {
-      name: 'CamcodeLearn',
+      name: 'Camcode',
       console: 'ផ្ទាំងគ្រប់គ្រង Admin',
     },
     groups: {
@@ -336,7 +336,7 @@ export const translations = {
     },
     pages: {
       dashboardGreeting: 'សួស្តី',
-      dashboardSubtitle: 'ទិដ្ឋភាពទូទៅនៃប្រតិបត្តិការថ្នាល CamcodeLearn របស់អ្នក។',
+      dashboardSubtitle: 'ទិដ្ឋភាពទូទៅនៃប្រតិបត្តិការថ្នាល Camcode របស់អ្នក។',
       dashboard: {
         createCourse: 'បង្កើតវគ្គសិក្សា',
         addVideo: 'បន្ថែមវីដេអូ',

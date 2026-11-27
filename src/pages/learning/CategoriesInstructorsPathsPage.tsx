@@ -91,7 +91,7 @@ export const CategoriesPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex items-center justify-between gap-3">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.categories.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.categories.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">
               {t.pages.categories.subtitle}
             </p>
@@ -112,17 +112,17 @@ export const CategoriesPage: React.FC = () => {
             {
               key: 'order',
               header: 'Order',
-              render: (c) => <span className="font-mono-custom">{c.displayOrder}</span>,
+              render: (c) => <span className="font-mono-tech">{c.displayOrder}</span>,
             },
             {
               key: 'name',
               header: 'Category (EN / KM)',
               render: (c) => (
                 <div className="flex items-center gap-2">
-                  <FolderTree className="h-4 w-4 text-[#2563EB]" />
+                  <FolderTree className="h-4 w-4 text-[#1c5b48]" />
                   <div>
-                    <p className="font-semibold text-[#1F2937]">{c.name.en}</p>
-                    <p className="text-[11.5px] text-[#6B7280]">{c.name.km || 'Missing KM'}</p>
+                    <p className="font-semibold text-[#141312]">{c.name.en}</p>
+                    <p className="text-[11.5px] text-[#6e6a62]">{c.name.km || 'Missing KM'}</p>
                   </div>
                 </div>
               ),
@@ -149,12 +149,12 @@ export const CategoriesPage: React.FC = () => {
               render: (c) => (
                 <div className="inline-flex gap-1">
                   {can('categories', 'edit') && (
-                    <button type="button" onClick={() => openModal(c)} className="p-1.5 rounded hover:bg-[#F3F4F6] text-[#2563EB] cursor-pointer">
+                    <button type="button" onClick={() => openModal(c)} className="p-1.5 rounded hover:bg-[#e5dfd2] text-[#1c5b48] cursor-pointer">
                       <Edit className="h-4 w-4" />
                     </button>
                   )}
                   {can('categories', 'delete') && (
-                    <button type="button" onClick={() => setDeleteTarget(c)} className="p-1.5 rounded hover:bg-[#FEF2F2] text-[#DC2626] cursor-pointer">
+                    <button type="button" onClick={() => setDeleteTarget(c)} className="p-1.5 rounded hover:bg-[#FEF2F2] text-[#a5331f] cursor-pointer">
                       <Trash2 className="h-4 w-4" />
                     </button>
                   )}
@@ -174,7 +174,7 @@ export const CategoriesPage: React.FC = () => {
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-[12.5px] font-medium mb-1">Parent Category</label>
-                <select value={parentId} onChange={(e) => setParentId(e.target.value)} className="w-full h-9 px-2.5 rounded-[8px] border border-[#E5E7EB] text-[13px]">
+                <select value={parentId} onChange={(e) => setParentId(e.target.value)} className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]">
                   <option value="">None (Top Level)</option>
                   {categories.filter((c) => c.id !== editing?.id).map((c) => (
                     <option key={c.id} value={c.id}>{c.name.en}</option>
@@ -323,7 +323,7 @@ export const InstructorsPage: React.FC = () => {
           assignedCoursesCount: 0,
           totalStudents: 0,
           avgRating: 5.0,
-          avatarColor: '#2563EB',
+          avatarColor: '#1c5b48',
           avatarUrl,
         },
       ]);
@@ -345,7 +345,7 @@ export const InstructorsPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.instructors.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.instructors.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.instructors.subtitle}</p>
           </div>
           {can('instructors', 'create') && (
@@ -370,7 +370,7 @@ export const InstructorsPage: React.FC = () => {
                     <img
                       src={i.avatarUrl}
                       alt={i.name}
-                      className="h-8 w-8 rounded-full object-cover shrink-0 border border-[#E5E7EB]"
+                      className="h-8 w-8 rounded-full object-cover shrink-0 border border-[#ded8ca]"
                     />
                   ) : (
                     <span
@@ -381,8 +381,8 @@ export const InstructorsPage: React.FC = () => {
                     </span>
                   )}
                   <div>
-                    <p className="font-semibold text-[#1F2937]">{i.name}</p>
-                    <p className="text-[11.5px] text-[#6B7280]">{i.email}</p>
+                    <p className="font-semibold text-[#141312]">{i.name}</p>
+                    <p className="text-[11.5px] text-[#6e6a62]">{i.email}</p>
                   </div>
                 </div>
               ),
@@ -402,7 +402,7 @@ export const InstructorsPage: React.FC = () => {
               align: 'right',
               render: (i) =>
                 can('instructors', 'edit') ? (
-                  <button type="button" onClick={() => openModal(i)} className="p-1.5 rounded hover:bg-[#F3F4F6] text-[#2563EB] cursor-pointer">
+                  <button type="button" onClick={() => openModal(i)} className="p-1.5 rounded hover:bg-[#e5dfd2] text-[#1c5b48] cursor-pointer">
                     <Edit className="h-4 w-4" />
                   </button>
                 ) : null,
@@ -412,7 +412,7 @@ export const InstructorsPage: React.FC = () => {
 
         <Modal open={modalOpen} onClose={() => setModalOpen(false)} title={editing ? 'Edit Instructor' : 'Create Instructor'}>
           <form onSubmit={handleSave} className="space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3.5 border-b border-[#E5E7EB]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3.5 border-b border-[#ded8ca]">
               <div className="flex items-center gap-3.5">
                 <input
                   ref={avatarInputRef}
@@ -426,21 +426,21 @@ export const InstructorsPage: React.FC = () => {
                   type="button"
                   onClick={() => avatarInputRef.current?.click()}
                   title={avatarUrl ? 'Change avatar' : 'Upload avatar'}
-                  className="relative group h-14 w-14 rounded-full overflow-hidden text-white text-[16px] font-bold flex items-center justify-center shrink-0 cursor-pointer border border-[#E5E7EB]"
-                  style={!avatarUrl ? { backgroundColor: editing?.avatarColor ?? '#2563EB' } : undefined}
+                  className="relative group h-14 w-14 rounded-full overflow-hidden text-white text-[16px] font-bold flex items-center justify-center shrink-0 cursor-pointer border border-[#ded8ca]"
+                  style={!avatarUrl ? { backgroundColor: editing?.avatarColor ?? '#1c5b48' } : undefined}
                 >
                   {avatarUrl ? (
                     <img src={avatarUrl} alt={name || 'Instructor'} className="h-full w-full object-cover" />
                   ) : (
                     <span>{previewInitials}</span>
                   )}
-                  <span className="absolute inset-0 bg-[#111827]/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <span className="absolute inset-0 bg-[#141312]/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <Camera className="h-4.5 w-4.5 text-white" />
                   </span>
                 </button>
                 <div>
-                  <p className="text-[13px] font-semibold text-[#1F2937]">Instructor Avatar</p>
-                  <p className="text-[11.5px] text-[#6B7280]">JPG, PNG or WebP · Max 5MB</p>
+                  <p className="text-[13px] font-semibold text-[#141312]">Instructor Avatar</p>
+                  <p className="text-[11.5px] text-[#6e6a62]">JPG, PNG or WebP · Max 5MB</p>
                 </div>
               </div>
 
@@ -472,7 +472,7 @@ export const InstructorsPage: React.FC = () => {
             </div>
 
             {avatarError && (
-              <p className="text-[12.5px] text-[#DC2626] bg-[#FEF2F2] border border-[#FECACA] rounded-[8px] px-3 py-2">
+              <p className="text-[12.5px] text-[#a5331f] bg-[#FEF2F2] border border-[#FECACA] rounded-xl px-3 py-2">
                 {avatarError}
               </p>
             )}
@@ -482,7 +482,7 @@ export const InstructorsPage: React.FC = () => {
             <Input label="Expertise" value={expertise} onChange={(e) => setExpertise(e.target.value)} required />
             <div>
               <label className="block text-[12.5px] font-medium mb-1">Biography</label>
-              <textarea rows={3} value={bioEn} onChange={(e) => setBioEn(e.target.value)} className="w-full rounded-[8px] border border-[#E5E7EB] p-2.5 text-[13px]" />
+              <textarea rows={3} value={bioEn} onChange={(e) => setBioEn(e.target.value)} className="w-full rounded-xl border border-[#ded8ca] p-2.5 text-[13px]" />
             </div>
             <div className="flex justify-end gap-2">
               <Button variant="outline" onClick={() => setModalOpen(false)}>Cancel</Button>
@@ -535,7 +535,7 @@ export const LearningPathsAdminPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.paths.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.paths.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">
               {t.pages.paths.subtitle}
             </p>
@@ -549,16 +549,16 @@ export const LearningPathsAdminPage: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
           {paths.map((p) => (
-            <div key={p.id} className="bg-white rounded-[12px] border border-[#E5E7EB] p-5 space-y-4">
+            <div key={p.id} className="card-note p-5 space-y-4">
               <div className="flex items-start justify-between gap-2">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <Badge tone={p.published ? 'success' : 'neutral'}>{p.published ? 'Published' : 'Draft'}</Badge>
                     <Badge tone="primary">{p.accessType}</Badge>
-                    <span className="text-[12px] text-[#6B7280]">{p.estimatedHours}h · {p.enrolledCount} enrolled</span>
+                    <span className="text-[12px] text-[#6e6a62]">{p.estimatedHours}h · {p.enrolledCount} enrolled</span>
                   </div>
-                  <h2 className="text-[17px] font-bold text-[#1F2937] flex items-center gap-2">
-                    <Map className="h-4.5 w-4.5 text-[#2563EB]" />
+                  <h2 className="font-serif-display text-[20px] font-normal text-[#141312] tracking-[-0.015em] flex items-center gap-2">
+                    <Map className="h-4.5 w-4.5 text-[#1c5b48]" />
                     {p.title.en}
                   </h2>
                 </div>
@@ -575,19 +575,19 @@ export const LearningPathsAdminPage: React.FC = () => {
                 )}
               </div>
 
-              <p className="text-[13px] text-[#4B5563]">{p.description.en}</p>
-              <p className="text-[12px] text-[#6B7280]">Prerequisites: {p.prerequisiteLabel}</p>
+              <p className="text-[13px] text-[#4c4842]">{p.description.en}</p>
+              <p className="text-[12px] text-[#6e6a62]">Prerequisites: {p.prerequisiteLabel}</p>
 
               {/* Visual Roadmap Steps */}
-              <div className="p-3.5 rounded-[10px] bg-[#F9FAFB] border border-[#E5E7EB] space-y-2">
-                <p className="text-[11px] font-semibold uppercase text-[#6B7280]">Structured Roadmap</p>
+              <div className="p-3.5 rounded-xl bg-[#f6f3ec] border border-[#ded8ca] space-y-2">
+                <p className="text-[11px] font-semibold uppercase text-[#6e6a62]">Structured Roadmap</p>
                 <div className="flex flex-wrap items-center gap-2">
                   {p.stepItems.map((step, i) => (
                     <React.Fragment key={i}>
-                      <span className="px-2.5 py-1 rounded-md bg-white border border-[#E5E7EB] text-[12px] font-medium text-[#1F2937]">
+                      <span className="px-2.5 py-1 rounded-md bg-[#efebe1] border border-[#ded8ca] text-[12px] font-medium text-[#141312]">
                         {i + 1}. {step.label}
                       </span>
-                      {i < p.stepItems.length - 1 && <ArrowRight className="h-3.5 w-3.5 text-[#9CA3AF]" />}
+                      {i < p.stepItems.length - 1 && <ArrowRight className="h-3.5 w-3.5 text-[#6e6a62]" />}
                     </React.Fragment>
                   ))}
                 </div>
@@ -606,7 +606,7 @@ export const LearningPathsAdminPage: React.FC = () => {
             </div>
             <div>
               <label className="block text-[12.5px] font-medium mb-1">Initial Course Step</label>
-              <select value={selectedCourseId} onChange={(e) => setSelectedCourseId(e.target.value)} className="w-full h-9 px-2.5 rounded-[8px] border border-[#E5E7EB] text-[13px]">
+              <select value={selectedCourseId} onChange={(e) => setSelectedCourseId(e.target.value)} className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]">
                 {courses.map((c) => (
                   <option key={c.id} value={c.id}>{c.title.en}</option>
                 ))}

@@ -32,7 +32,7 @@ export const OrdersPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex items-center justify-between gap-3">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.orders.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.orders.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.orders.subtitle}</p>
           </div>
           {can('orders', 'export') && (
@@ -78,7 +78,7 @@ export const OrdersPage: React.FC = () => {
             />
           }
           columns={[
-            { key: 'num', header: 'Order #', render: (o) => <span className="font-mono-custom font-semibold">{o.orderNumber}</span> },
+            { key: 'num', header: 'Order #', render: (o) => <span className="font-mono-tech font-semibold">{o.orderNumber}</span> },
             { key: 'cust', header: 'Customer', render: (o) => o.memberName },
             { key: 'item', header: 'Course / Plan', render: (o) => o.itemName },
             { key: 'amount', header: 'Amount', render: (o) => <span className="font-semibold">${o.amount.toFixed(2)}</span> },
@@ -90,7 +90,7 @@ export const OrdersPage: React.FC = () => {
               header: 'Actions',
               align: 'right',
               render: (o) => (
-                <button type="button" onClick={() => setDetailOrder(o)} className="p-1.5 rounded hover:bg-[#F3F4F6] text-[#2563EB] cursor-pointer">
+                <button type="button" onClick={() => setDetailOrder(o)} className="p-1.5 rounded hover:bg-[#e5dfd2] text-[#1c5b48] cursor-pointer">
                   <Eye className="h-4 w-4" />
                 </button>
               ),
@@ -135,7 +135,7 @@ export const PaymentsPage: React.FC = () => {
       <div className="space-y-5">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.payments.title}</h1>
+            <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.payments.title}</h1>
             <p className="text-[14.5px] text-[#475569] mt-1">
               {t.pages.payments.subtitle}
             </p>
@@ -163,7 +163,7 @@ export const PaymentsPage: React.FC = () => {
           searchPlaceholder="Search transaction ID or order #..."
           searchFilter={(p, q) => p.transactionId.toLowerCase().includes(q) || p.orderNumber.toLowerCase().includes(q)}
           columns={[
-            { key: 'txn', header: 'Transaction ID', render: (p) => <span className="font-mono-custom">{p.transactionId}</span> },
+            { key: 'txn', header: 'Transaction ID', render: (p) => <span className="font-mono-tech">{p.transactionId}</span> },
             { key: 'order', header: 'Order #', render: (p) => p.orderNumber },
             { key: 'provider', header: 'Provider', render: (p) => <Badge tone="primary">{p.provider}</Badge> },
             { key: 'amount', header: 'Amount', render: (p) => `$${p.amount.toFixed(2)} ${p.currency}` },
@@ -217,7 +217,7 @@ export const SubscriptionsPage: React.FC = () => {
     <PermissionGuard module="subscriptions" action="view">
       <div className="space-y-5">
         <div>
-          <h1 className="text-[26px] sm:text-[30px] font-bold text-[#0F172A] tracking-tight">{t.pages.subscriptions.title}</h1>
+          <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15]">{t.pages.subscriptions.title}</h1>
           <p className="text-[14.5px] text-[#475569] mt-1">{t.pages.subscriptions.subtitle}</p>
         </div>
 
