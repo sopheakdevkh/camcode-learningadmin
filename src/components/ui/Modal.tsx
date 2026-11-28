@@ -34,17 +34,17 @@ export const Modal: React.FC<ModalProps> = ({
       onClick={onClose}
     >
       <div
-        className={`w-full ${maxWidthClass} bg-[#efebe1] rounded-2xl border border-[#ded8ca] shadow-[0_24px_60px_-15px_rgba(23,28,25,0.22)] overflow-hidden my-8`}
+        className={`w-full ${maxWidthClass} bg-[#f6f3ec] rounded-2xl border border-[#ded8ca] shadow-[0_24px_60px_-15px_rgba(23,28,25,0.22)] overflow-hidden my-8`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-[#ded8ca] bg-[#f6f3ec]/70">
+        <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-[#ded8ca] bg-[#f6f3ec]">
           <h3 className="font-serif-display text-[20px] font-normal tracking-[-0.015em] text-[#141312] leading-snug">
             {title}
           </h3>
           <button
             type="button"
             onClick={onClose}
-            className="h-8 w-8 rounded-full border border-[#ded8ca] bg-[#efebe1] text-[#6e6a62] hover:text-[#141312] hover:bg-[#e5dfd2] flex items-center justify-center cursor-pointer transition-colors"
+            className="h-8 w-8 rounded-full border border-[#ded8ca] bg-[#f6f3ec] text-[#6e6a62] hover:text-[#141312] hover:bg-[#e5dfd2] flex items-center justify-center cursor-pointer transition-colors"
             aria-label="Close modal"
           >
             <X className="h-4 w-4" />

@@ -61,6 +61,7 @@ export const translations = {
       settings: 'System Settings',
       integrations: 'API & Integrations',
       maintenance: 'Backup & Maintenance',
+      rbacPreview: 'RBAC Role Preview',
     },
     pages: {
       dashboardGreeting: 'Hi',
@@ -253,6 +254,10 @@ export const translations = {
         title: 'Backup & Maintenance',
         subtitle: 'Database snapshots, storage utilization, system health, and maintenance mode.',
       },
+      rbacPreview: {
+        title: 'RBAC Role Preview',
+        subtitle: 'Switch active console role within System Administration to verify module access and data scope.',
+      },
     },
     common: {
       searchPlaceholder: 'Search admin modules, courses, members, orders...',
@@ -333,6 +338,7 @@ export const translations = {
       settings: 'ការកំណត់ប្រព័ន្ធ',
       integrations: 'API និងការតភ្ជាប់',
       maintenance: 'បម្រុងទុក និងថែទាំ',
+      rbacPreview: 'សាកល្បងតួនាទី RBAC',
     },
     pages: {
       dashboardGreeting: 'សួស្តី',
@@ -524,6 +530,10 @@ export const translations = {
       maintenance: {
         title: 'ការបម្រុងទុក និងថែទាំប្រព័ន្ធ',
         subtitle: 'ការថតចម្លងទិន្នន័យ ទំហំផ្ទុក សុខភាពម៉ាស៊ីនមេ និងរបៀបថែទាំ។',
+      },
+      rbacPreview: {
+        title: 'សាកល្បងតួនាទី RBAC',
+        subtitle: 'ប្តូរតួនាទីអ្នកគ្រប់គ្រងនៅក្នុងផ្នែកប្រព័ន្ធ ដើម្បីផ្ទៀងផ្ទាត់សិទ្ធិចូលប្រើប្រាស់ម៉ូឌុល។',
       },
     },
     common: {

@@ -57,7 +57,7 @@ export function DataTable<T>({
                   setPage(1);
                 }}
                 placeholder={searchPlaceholder}
-                className="w-full h-9 pl-9 pr-3.5 rounded-full border border-[#ded8ca] bg-[#efebe1] text-[13.5px] text-[#141312] placeholder:text-[#6e6a62] focus:border-[#1c5b48] focus:ring-2 focus:ring-[#1c5b48]/20 outline-none transition-colors"
+                className="w-full h-9 pl-9 pr-3.5 rounded-[10px] border border-[#ded8ca] bg-[#efebe1] text-[13.5px] text-[#141312] placeholder:text-[#6e6a62] focus:border-[#1c5b48] focus:ring-2 focus:ring-[#1c5b48]/20 outline-none transition-colors"
               />
             </div>
           ) : (
@@ -95,7 +95,7 @@ export function DataTable<T>({
               </tr>
             ) : (
               slice.map((row) => (
-                <tr key={keyExtractor(row)} className="hover:bg-[#f6f3ec]/75 transition-colors">
+                <tr key={keyExtractor(row)} className="hover:bg-[#efebe1]/75 transition-colors">
                   {columns.map((col) => (
                     <td
                       key={col.key}
@@ -124,7 +124,7 @@ export function DataTable<T>({
               type="button"
               disabled={safePage <= 1}
               onClick={() => setPage((p) => Math.max(1, p - 1))}
-              className="h-8 w-8 rounded-full border border-[#ded8ca] bg-[#efebe1] text-[#4c4842] hover:bg-[#e5dfd2] disabled:opacity-40 flex items-center justify-center cursor-pointer transition-colors"
+              className="h-8 w-8 rounded-full border border-[#ded8ca] bg-[#f6f3ec] text-[#4c4842] hover:bg-[#e5dfd2] disabled:opacity-40 flex items-center justify-center cursor-pointer transition-colors"
               aria-label="Previous page"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -136,7 +136,7 @@ export function DataTable<T>({
               type="button"
               disabled={safePage >= totalPages}
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-              className="h-8 w-8 rounded-full border border-[#ded8ca] bg-[#efebe1] text-[#4c4842] hover:bg-[#e5dfd2] disabled:opacity-40 flex items-center justify-center cursor-pointer transition-colors"
+              className="h-8 w-8 rounded-full border border-[#ded8ca] bg-[#f6f3ec] text-[#4c4842] hover:bg-[#e5dfd2] disabled:opacity-40 flex items-center justify-center cursor-pointer transition-colors"
               aria-label="Next page"
             >
               <ChevronRight className="h-4 w-4" />

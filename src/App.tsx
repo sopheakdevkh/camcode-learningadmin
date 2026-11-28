@@ -45,6 +45,7 @@ import {
   AuditLogsPage,
   IntegrationsPage,
   MaintenancePage,
+  RbacPreviewPage,
   SystemSettingsPage,
 } from '@/pages/system/SystemAdminPages';
 import {
@@ -58,11 +59,17 @@ const AdminRoutes: React.FC = () => {
   const { currentAdmin } = useAdmin();
 
   if (!currentAdmin) {
-    return <AdminLoginPage />;
+    return (
+      <Routes>
+        <Route path="/login" element={<AdminLoginPage />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+    );
   }
 
   return (
     <Routes>
+      <Route path="/login" element={<Navigate to="/" replace />} />
       <Route element={<AdminShell />}>
         {/* Overview */}
         <Route path="/" element={<DashboardPage />} />
@@ -123,6 +130,7 @@ const AdminRoutes: React.FC = () => {
         <Route path="/system/settings" element={<SystemSettingsPage />} />
         <Route path="/system/integrations" element={<IntegrationsPage />} />
         <Route path="/system/maintenance" element={<MaintenancePage />} />
+        <Route path="/system/rbac-preview" element={<RbacPreviewPage />} />
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>

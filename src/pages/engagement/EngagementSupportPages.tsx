@@ -83,12 +83,12 @@ export const AnnouncementsPage: React.FC = () => {
             <Input label="Headline (EN)" value={titleEn} onChange={(e) => setTitleEn(e.target.value)} required />
             <div>
               <label className="block text-[12.5px] font-medium mb-1">Message Body</label>
-              <textarea rows={3} value={msgEn} onChange={(e) => setMsgEn(e.target.value)} required className="w-full rounded-xl border border-[#ded8ca] p-2.5 text-[13px]" />
+              <textarea rows={3} value={msgEn} onChange={(e) => setMsgEn(e.target.value)} required className="w-full rounded-[10px] border border-[#ded8ca] p-2.5 text-[13px]" />
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-[12.5px] font-medium mb-1">Target Group</label>
-                <select value={audience} onChange={(e) => setAudience(e.target.value as AdminAnnouncement['audience'])} className="w-full h-9 px-2 rounded-xl border border-[#ded8ca] text-[13px]">
+                <select value={audience} onChange={(e) => setAudience(e.target.value as AdminAnnouncement['audience'])} className="w-full h-9 px-2 rounded-[10px] border border-[#ded8ca] text-[13px]">
                   <option value="all">All Users</option>
                   <option value="free_members">Free Members</option>
                   <option value="paid_members">Paid Subscribers</option>
@@ -97,7 +97,7 @@ export const AnnouncementsPage: React.FC = () => {
               </div>
               <div>
                 <label className="block text-[12.5px] font-medium mb-1">Delivery Channel</label>
-                <select value={channel} onChange={(e) => setChannel(e.target.value as AdminAnnouncement['channel'])} className="w-full h-9 px-2 rounded-xl border border-[#ded8ca] text-[13px]">
+                <select value={channel} onChange={(e) => setChannel(e.target.value as AdminAnnouncement['channel'])} className="w-full h-9 px-2 rounded-[10px] border border-[#ded8ca] text-[13px]">
                   <option value="both">In-App + Email</option>
                   <option value="in_app">In-App Only</option>
                   <option value="email">Email Only</option>
@@ -225,7 +225,7 @@ export const ReviewsPage: React.FC = () => {
               value={replyText}
               onChange={(e) => setReplyText(e.target.value)}
               placeholder="Write official academy response..."
-              className="w-full rounded-xl border border-[#ded8ca] p-2.5 text-[13px]"
+              className="w-full rounded-[10px] border border-[#ded8ca] p-2.5 text-[13px]"
             />
             <div className="flex justify-end gap-2">
               <Button variant="outline" onClick={() => setReplyTargetId(null)}>Cancel</Button>
@@ -336,7 +336,7 @@ export const SupportTicketsPage: React.FC = () => {
                       setTickets((prev) => prev.map((x) => (x.id === activeTicket.id ? { ...x, status: next } : x)));
                       setActiveTicket((prev) => (prev ? { ...prev, status: next } : null));
                     }}
-                    className="h-8 px-2.5 rounded-md border border-[#ded8ca]"
+                    className="h-8 px-2.5 rounded-[10px] border border-[#ded8ca]"
                   >
                     <option value="open">Open</option>
                     <option value="in_progress">In Progress</option>
@@ -363,7 +363,7 @@ export const SupportTicketsPage: React.FC = () => {
                     value={replyBody}
                     onChange={(e) => setReplyBody(e.target.value)}
                     placeholder="Write response to member..."
-                    className="flex-1 h-9 px-3 rounded-xl border border-[#ded8ca]"
+                    className="flex-1 h-9 px-3 rounded-[10px] border border-[#ded8ca]"
                   />
                   <Button size="sm" onClick={sendReply}>Send Reply</Button>
                 </div>

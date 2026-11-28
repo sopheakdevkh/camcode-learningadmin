@@ -64,7 +64,7 @@ const BrandMark: React.FC<{ small?: boolean }> = ({ small = false }) => (
   <span
     className={`inline-flex ${
       small ? 'h-8 w-8' : 'h-9 w-9'
-    } items-center justify-center rounded-xl bg-[#1c5b48] text-white shadow-2xs shrink-0`}
+    } items-center justify-center rounded-xl bg-[#1c5b48] text-white border border-white/15 shadow-2xs shrink-0`}
   >
     <svg width={small ? 15 : 17} height={small ? 15 : 17} viewBox="0 0 16 16" fill="none">
       <path
@@ -83,13 +83,11 @@ export const AdminShell: React.FC = () => {
   const {
     currentAdmin,
     currentRole,
-    roles,
     courses,
     members,
     orders,
     auditLogs,
     can,
-    switchDemoRole,
     logoutAdmin,
   } = useAdmin();
 
@@ -185,6 +183,7 @@ export const AdminShell: React.FC = () => {
           { to: '/system/settings', label: t.nav.settings, module: 'settings', icon: <Settings className="h-4.5 w-4.5" /> },
           { to: '/system/integrations', label: t.nav.integrations, module: 'integrations', icon: <Plug className="h-4.5 w-4.5" /> },
           { to: '/system/maintenance', label: t.nav.maintenance, module: 'maintenance', icon: <Database className="h-4.5 w-4.5" /> },
+          { to: '/system/rbac-preview', label: t.nav.rbacPreview, module: 'roles', icon: <Shield className="h-4.5 w-4.5" /> },
         ],
       },
     ],
@@ -237,7 +236,7 @@ export const AdminShell: React.FC = () => {
       {visibleGroups.map((group) => (
         <div key={group.title}>
           {!isCollapsed && (
-            <p className="px-3 mb-1.5 font-mono-tech text-[10.5px] font-medium uppercase tracking-[0.14em] text-[#6e6a62]">
+            <p className="px-3 mb-1.5 font-mono-tech text-[10.5px] font-medium uppercase tracking-[0.14em] text-[#A3ACA6]">
               {group.title}
             </p>
           )}
@@ -252,19 +251,29 @@ export const AdminShell: React.FC = () => {
                 className={({ isActive }) =>
                   `flex items-center ${isCollapsed ? 'justify-center px-2' : 'justify-between px-3'} gap-2.5 py-2 rounded-xl text-[13.5px] font-medium transition-colors ${
                     isActive
-                      ? 'bg-[#e4ede7] text-[#1c5b48] font-semibold border border-[#c5d6cb]'
-                      : 'text-[#4c4842] hover:bg-[#e5dfd2]/75 hover:text-[#141312]'
+                      ? 'bg-[#f6f3ec] text-[#141312] font-semibold shadow-2xs'
+                      : 'text-[#D5D1C8] hover:bg-white/10 hover:text-[#f6f3ec]'
                   }`
                 }
               >
-                <span className="flex items-center gap-2.5 min-w-0">
-                  <span className="shrink-0">{item.icon}</span>
-                  {!isCollapsed && <span className="truncate">{item.label}</span>}
-                </span>
-                {!isCollapsed && item.badge !== undefined && item.badge > 0 && (
-                  <span className="px-2 py-0.5 rounded-full bg-[#1c5b48] text-white font-mono-tech text-[10.5px] font-semibold leading-none">
-                    {item.badge}
-                  </span>
+                {({ isActive }) => (
+                  <>
+                    <span className="flex items-center gap-2.5 min-w-0">
+                      <span className="shrink-0">{item.icon}</span>
+                      {!isCollapsed && <span className="truncate">{item.label}</span>}
+                    </span>
+                    {!isCollapsed && item.badge !== undefined && item.badge > 0 && (
+                      <span
+                        className={`px-2 py-0.5 rounded-full font-mono-tech text-[10.5px] font-semibold leading-none ${
+                          isActive
+                            ? 'bg-[#1c5b48] text-white'
+                            : 'bg-white/15 text-[#f6f3ec]'
+                        }`}
+                      >
+                        {item.badge}
+                      </span>
+                    )}
+                  </>
                 )}
               </NavLink>
             ))}
@@ -293,21 +302,21 @@ export const AdminShell: React.FC = () => {
       <div className="bg-environment" />
       <div className="grid-floor" />
 
-      {/* Warm Stone Sidebar */}
+      {/* Ink Sidebar */}
       <aside
-        className={`no-print hidden lg:flex flex-col sticky top-0 h-screen shrink-0 bg-[#efebe1]/92 backdrop-blur-xl text-[#141312] border-r border-[#ded8ca] transition-all duration-200 z-30 ${
+        className={`no-print hidden lg:flex flex-col sticky top-0 h-screen shrink-0 sidebar-accent text-[#f6f3ec] border-r border-white/10 transition-all duration-200 z-30 ${
           collapsed ? 'w-[76px]' : 'w-[258px]'
         }`}
       >
-        <div className="h-16 px-4 flex items-center justify-between border-b border-[#ded8ca] shrink-0">
+        <div className="h-16 px-4 flex items-center justify-between border-b border-white/10 shrink-0">
           <Link to="/" className="flex items-center gap-2.5 min-w-0">
             <BrandMark />
             {!collapsed && (
               <div className="min-w-0">
-                <p className="font-serif-display text-[17px] font-normal tracking-[-0.015em] text-[#141312] leading-tight truncate">
+                <p className="font-serif-display text-[17px] font-normal tracking-[-0.015em] text-[#f6f3ec] leading-tight truncate">
                   {t.brand.name}
                 </p>
-                <p className="font-mono-tech text-[10.5px] uppercase tracking-[0.12em] text-[#1c5b48] font-medium leading-tight">
+                <p className="font-mono-tech text-[10.5px] uppercase tracking-[0.12em] text-[#7CD4B5] font-medium leading-tight">
                   {t.brand.console}
                 </p>
               </div>
@@ -318,10 +327,10 @@ export const AdminShell: React.FC = () => {
         {renderSidebarContent(collapsed)}
 
         {!collapsed && (
-          <div className="p-3 border-t border-[#ded8ca] text-[11px] font-mono-tech text-[#6e6a62] flex items-center justify-between bg-[#f6f3ec]/70">
+          <div className="p-3 border-t border-white/10 text-[11px] font-mono-tech text-[#A3ACA6] flex items-center justify-between bg-white/[0.03]">
             <span>Port 3002 · API :4000</span>
-            <span className="inline-flex items-center gap-1.5 text-[#1c5b48] font-medium">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#1c5b48]" />
+            <span className="inline-flex items-center gap-1.5 text-[#7CD4B5] font-medium">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#7CD4B5]" />
               {t.pages.dashboard.liveLabel}
             </span>
           </div>
@@ -342,26 +351,26 @@ export const AdminShell: React.FC = () => {
           onClick={() => setMobileOpen(false)}
         />
         <div
-          className={`relative z-10 w-[280px] max-w-[85vw] h-full bg-[#efebe1] text-[#141312] border-r border-[#ded8ca] flex flex-col shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`relative z-10 w-[280px] max-w-[85vw] h-full sidebar-accent text-[#f6f3ec] border-r border-white/10 flex flex-col shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
             mobileOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="h-16 px-4 flex items-center justify-between border-b border-[#ded8ca] shrink-0">
+          <div className="h-16 px-4 flex items-center justify-between border-b border-white/10 shrink-0">
             <Link
               to="/"
               onClick={() => setMobileOpen(false)}
               className="flex items-center gap-2.5"
             >
               <BrandMark small />
-              <span className="font-serif-display text-[17px] text-[#141312]">
+              <span className="font-serif-display text-[17px] text-[#f6f3ec]">
                 {t.brand.name}
               </span>
             </Link>
             <button
               type="button"
               onClick={() => setMobileOpen(false)}
-              className="h-8 w-8 rounded-full border border-[#ded8ca] bg-[#f6f3ec] text-[#6e6a62] hover:bg-[#e5dfd2] hover:text-[#141312] flex items-center justify-center cursor-pointer transition-colors"
+              className="h-8 w-8 rounded-full border border-white/15 bg-white/10 text-[#D5D1C8] hover:bg-white/20 hover:text-white flex items-center justify-center cursor-pointer transition-colors"
               aria-label="Close navigation drawer"
             >
               <X className="h-4 w-4" />
@@ -406,7 +415,7 @@ export const AdminShell: React.FC = () => {
           {/* Right Utility Cluster */}
           <div className="flex items-center gap-2 sm:gap-2.5">
             <div className="relative hidden md:block w-60 lg:w-72">
-              <div className="flex items-center h-9 px-3.5 rounded-full border border-[#ded8ca] bg-[#efebe1] focus-within:border-[#1c5b48] focus-within:ring-2 focus-within:ring-[#1c5b48]/15 transition-colors">
+              <div className="flex items-center h-9 px-3.5 rounded-[10px] border border-[#ded8ca] bg-[#efebe1] focus-within:border-[#1c5b48] focus-within:ring-2 focus-within:ring-[#1c5b48]/15 transition-colors">
                 <input
                   type="text"
                   value={searchQuery}
@@ -430,7 +439,7 @@ export const AdminShell: React.FC = () => {
               </div>
 
               {searchOpen && searchQuery.trim().length > 0 && (
-                <div className="absolute left-0 right-0 top-11 bg-[#efebe1] border border-[#ded8ca] rounded-2xl shadow-[0_18px_40px_-14px_rgba(23,28,25,0.16)] p-1.5 z-40">
+                <div className="absolute left-0 right-0 top-11 bg-[#f6f3ec] border border-[#ded8ca] rounded-2xl shadow-[0_18px_40px_-14px_rgba(23,28,25,0.16)] p-1.5 z-40">
                   {searchHits.length === 0 ? (
                     <p className="p-3 text-[12.5px] text-[#6e6a62] text-center">{t.common.empty}</p>
                   ) : (
@@ -488,8 +497,8 @@ export const AdminShell: React.FC = () => {
               </button>
 
               {notifOpen && (
-                <div className="absolute right-0 top-11 w-80 bg-[#efebe1] border border-[#ded8ca] rounded-2xl shadow-[0_18px_40px_-14px_rgba(23,28,25,0.16)] z-40 overflow-hidden">
-                  <div className="px-4 py-3 border-b border-[#ded8ca] font-semibold text-[13px] flex justify-between bg-[#f6f3ec]/70">
+                <div className="absolute right-0 top-11 w-80 bg-[#f6f3ec] border border-[#ded8ca] rounded-2xl shadow-[0_18px_40px_-14px_rgba(23,28,25,0.16)] z-40 overflow-hidden">
+                  <div className="px-4 py-3 border-b border-[#ded8ca] font-semibold text-[13px] flex justify-between bg-[#efebe1]/50">
                     <span className="text-[#141312]">Recent Platform Events</span>
                     <Link
                       to="/system/audit-logs"
@@ -538,39 +547,50 @@ export const AdminShell: React.FC = () => {
               </button>
 
               {profileOpen && (
-                <div className="absolute right-0 top-11 w-68 bg-[#efebe1] border border-[#ded8ca] rounded-2xl shadow-[0_18px_40px_-14px_rgba(23,28,25,0.16)] p-2 z-40">
+                <div className="absolute right-0 top-11 w-68 bg-[#f6f3ec] border border-[#ded8ca] rounded-2xl shadow-[0_18px_40px_-14px_rgba(23,28,25,0.16)] p-2 z-40">
                   <div className="px-3 py-2 border-b border-[#ded8ca]">
                     <p className="text-[13px] font-semibold text-[#141312]">{currentAdmin?.name}</p>
                     <p className="text-[11.5px] text-[#6e6a62]">{currentAdmin?.email}</p>
+                    {currentRole && (
+                      <div className="mt-1.5 flex items-center justify-between gap-2">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-[#e4ede7] text-[#1c5b48] text-[10.5px] font-semibold">
+                          {currentRole.name}
+                        </span>
+                        <span className="font-mono-tech text-[10px] uppercase text-[#6e6a62]">
+                          {currentRole.dataScope}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="px-3 py-2 border-b border-[#ded8ca]">
-                    <p className="font-mono-tech text-[10px] font-medium uppercase tracking-[0.12em] text-[#6e6a62] mb-1.5">
-                      {t.common.switchRole}
-                    </p>
-                    <div className="space-y-1">
-                      {roles.map((r) => (
-                        <button
-                          key={r.id}
-                          type="button"
-                          onClick={() => {
-                            switchDemoRole(r.id);
-                            setProfileOpen(false);
-                          }}
-                          className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[12px] font-medium flex items-center justify-between cursor-pointer transition-colors ${
-                            currentRole?.id === r.id
-                              ? 'bg-[#e4ede7] text-[#1c5b48]'
-                              : 'text-[#4c4842] hover:bg-[#e5dfd2]/70'
-                          }`}
-                        >
-                          <span>{r.name}</span>
-                          {currentRole?.id === r.id && (
-                            <span className="font-mono-tech text-[10px]">Active</span>
-                          )}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+                  {(() => {
+                    const systemGroup = visibleGroups.find((g) => g.title === t.groups.system);
+                    if (!systemGroup || systemGroup.items.length === 0) return null;
+                    return (
+                      <div className="px-2 py-2 border-b border-[#ded8ca]">
+                        <p className="px-1.5 font-mono-tech text-[10px] font-medium uppercase tracking-[0.12em] text-[#6e6a62] mb-1.5">
+                          {t.groups.system}
+                        </p>
+                        <div className="space-y-0.5">
+                          {systemGroup.items.map((item) => (
+                            <Link
+                              key={item.to}
+                              to={item.to}
+                              onClick={() => setProfileOpen(false)}
+                              className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-[12px] font-medium transition-colors ${
+                                location.pathname === item.to
+                                  ? 'bg-[#e4ede7] text-[#1c5b48] font-semibold'
+                                  : 'text-[#4c4842] hover:bg-[#e5dfd2]/70 hover:text-[#141312]'
+                              }`}
+                            >
+                              <span className="shrink-0">{item.icon}</span>
+                              <span className="truncate">{item.label}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })()}
 
                   <button
                     type="button"

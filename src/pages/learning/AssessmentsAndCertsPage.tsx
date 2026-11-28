@@ -340,14 +340,14 @@ export const QuestionBankPage: React.FC = () => {
             <div className="grid grid-cols-3 gap-3">
               <div>
                 <label className="block text-[12.5px] font-medium mb-1">Type</label>
-                <select value={qType} onChange={(e) => setQType(e.target.value as 'multiple_choice' | 'true_false')} className="w-full h-9 px-2 rounded-xl border border-[#ded8ca] text-[13px]">
+                <select value={qType} onChange={(e) => setQType(e.target.value as 'multiple_choice' | 'true_false')} className="w-full h-9 px-2 rounded-[10px] border border-[#ded8ca] text-[13px]">
                   <option value="multiple_choice">Multiple Choice</option>
                   <option value="true_false">True / False</option>
                 </select>
               </div>
               <div>
                 <label className="block text-[12.5px] font-medium mb-1">Difficulty</label>
-                <select value={difficulty} onChange={(e) => setDifficulty(e.target.value as DifficultyLevel)} className="w-full h-9 px-2 rounded-xl border border-[#ded8ca] text-[13px]">
+                <select value={difficulty} onChange={(e) => setDifficulty(e.target.value as DifficultyLevel)} className="w-full h-9 px-2 rounded-[10px] border border-[#ded8ca] text-[13px]">
                   <option value="beginner">Beginner</option>
                   <option value="intermediate">Intermediate</option>
                   <option value="advanced">Advanced</option>
