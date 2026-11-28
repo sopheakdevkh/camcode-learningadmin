@@ -132,7 +132,7 @@ const AdminContext = createContext<AdminContextValue | null>(null);
 export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [roles, setRoles] = useState<AdminRole[]>(INITIAL_ROLES);
   const [admins, setAdmins] = useState<AdminUser[]>(INITIAL_ADMINS);
-  const [currentAdminId, setCurrentAdminId] = useState<string | null>('adm-1');
+  const [currentAdminId, setCurrentAdminId] = useState<string | null>(null);
 
   const [courses, setCourses] = useState<AdminCourse[]>(INITIAL_COURSES);
   const [lessons, setLessons] = useState<AdminLesson[]>(INITIAL_LESSONS);
@@ -200,9 +200,25 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const loginAdmin = (email: string, password: string): boolean => {
     if (!email.trim() || password.length < 6) return false;
-    const matched = admins.find((a) => a.email.toLowerCase() === email.trim().toLowerCase()) ?? admins[0];
+    const matched = admins.find((a) => a.email.toLowerCase() === email.trim().toLowerCase());
     if (!matched || matched.status !== 'active') return false;
+    const matchedRole = roles.find((r) => r.id === matched.roleId);
+    const now = new Date().toISOString().replace('T', ' ').slice(0, 19);
     setCurrentAdminId(matched.id);
+    setAuditLogs((prev) => [
+      {
+        id: `aud-${Date.now()}`,
+        actorName: matched.name,
+        actorRole: matchedRole?.name ?? 'Administrator',
+        action: 'Admin signed in',
+        module: 'administrators',
+        timestamp: now,
+        ipAddress: matched.ipAddress,
+        result: 'success',
+        details: `Started session (${matched.email})`,
+      },
+      ...prev,
+    ]);
     return true;
   };
 

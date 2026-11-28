@@ -129,7 +129,7 @@ export const LessonsPage: React.FC = () => {
                 onDragStart={() => setDragId(les.id)}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={() => handleDrop(les.id)}
-                className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-[#f6f3ec]"
+                className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-[#efebe1]/70"
               >
                 <div className="flex items-start gap-3 min-w-0">
                   <GripVertical className="h-4.5 w-4.5 text-[#6e6a62] mt-1 cursor-grab shrink-0" />
@@ -219,7 +219,7 @@ export const LessonsPage: React.FC = () => {
                 <select
                   value={type}
                   onChange={(e) => setType(e.target.value as 'video' | 'text' | 'quiz')}
-                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-[10px] border border-[#ded8ca] text-[13px]"
                 >
                   <option value="video">Video Lesson</option>
                   <option value="text">Text / Reading</option>
@@ -232,7 +232,7 @@ export const LessonsPage: React.FC = () => {
                 <select
                   value={availabilityRule}
                   onChange={(e) => setAvailabilityRule(e.target.value as 'immediate' | 'sequential' | 'scheduled')}
-                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-[10px] border border-[#ded8ca] text-[13px]"
                 >
                   <option value="immediate">Immediate</option>
                   <option value="sequential">Sequential Unlock</option>
@@ -246,7 +246,7 @@ export const LessonsPage: React.FC = () => {
                 <select
                   value={videoId}
                   onChange={(e) => setVideoId(e.target.value)}
-                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-[10px] border border-[#ded8ca] text-[13px]"
                 >
                   {videos.map((v) => (
                     <option key={v.id} value={v.id}>
@@ -691,7 +691,7 @@ export const VideosAdminPage: React.FC = () => {
                 <select
                   value={provider}
                   onChange={(e) => setProvider(e.target.value as 'Cloudflare Stream' | 'Mux')}
-                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-[10px] border border-[#ded8ca] text-[13px]"
                 >
                   <option value="Cloudflare Stream">Cloudflare Stream</option>
                   <option value="Mux">Mux Video</option>
@@ -702,7 +702,7 @@ export const VideosAdminPage: React.FC = () => {
                 <select
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
-                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-[10px] border border-[#ded8ca] text-[13px]"
                 >
                   {categories.map((c) => (
                     <option key={c.id} value={c.id}>{c.name.en}</option>
@@ -714,7 +714,7 @@ export const VideosAdminPage: React.FC = () => {
                 <select
                   value={accessRule}
                   onChange={(e) => setAccessRule(e.target.value as 'free' | 'basic' | 'premium')}
-                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-[10px] border border-[#ded8ca] text-[13px]"
                 >
                   <option value="free">Free</option>
                   <option value="basic">Basic Plan</option>

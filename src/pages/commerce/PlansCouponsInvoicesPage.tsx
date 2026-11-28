@@ -198,7 +198,7 @@ export const CouponsPage: React.FC = () => {
             <div className="grid grid-cols-3 gap-3">
               <div>
                 <label className="block text-[12.5px] font-medium mb-1">Type</label>
-                <select value={discountType} onChange={(e) => setDiscountType(e.target.value as 'percent' | 'fixed')} className="w-full h-9 px-2 rounded-xl border border-[#ded8ca] text-[13px]">
+                <select value={discountType} onChange={(e) => setDiscountType(e.target.value as 'percent' | 'fixed')} className="w-full h-9 px-2 rounded-[10px] border border-[#ded8ca] text-[13px]">
                   <option value="percent">Percentage (%)</option>
                   <option value="fixed">Fixed ($)</option>
                 </select>

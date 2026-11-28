@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle2, Database, Plug, RefreshCw, Server, Settings, ShieldAlert } from 'lucide-react';
+import { CheckCircle2, Database, Plug, RefreshCw, Server, Settings, Shield, ShieldAlert } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { DataTable } from '@/components/ui/DataTable';
@@ -343,6 +343,72 @@ export const MaintenancePage: React.FC = () => {
             setConfirmMaint(false);
           }}
         />
+      </div>
+    </PermissionGuard>
+  );
+};
+
+/* ==================== SCREEN 32: RBAC ROLE PREVIEW (SYSTEM MODULE) ==================== */
+export const RbacPreviewPage: React.FC = () => {
+  const { t } = useI18n();
+  const { roles, currentRole, switchDemoRole, logAudit } = useAdmin();
+
+  return (
+    <PermissionGuard module="roles" action="view">
+      <div className="space-y-5 max-w-4xl">
+        <div>
+          <h1 className="font-serif-display text-[28px] sm:text-[34px] font-normal text-[#141312] tracking-[-0.02em] leading-[1.15] flex items-center gap-2">
+            <Shield className="h-5 w-5 text-[#1c5b48]" />
+            {t.pages.rbacPreview.title}
+          </h1>
+          <p className="text-[14.5px] text-[#475569] mt-1">
+            {t.pages.rbacPreview.subtitle}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {roles.map((r) => {
+            const isActive = currentRole?.id === r.id;
+            const viewableCount = Object.values(r.permissions).filter((p) => p?.view).length;
+            return (
+              <div
+                key={r.id}
+                className={`card-note p-5 flex flex-col justify-between gap-4 ${
+                  isActive ? 'ring-2 ring-[#1c5b48]' : ''
+                }`}
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <h2 className="font-serif-display text-[20px] font-normal text-[#141312]">
+                      {r.name}
+                    </h2>
+                    <Badge tone={isActive ? 'success' : 'neutral'}>
+                      {isActive ? 'Active' : r.dataScope}
+                    </Badge>
+                  </div>
+                  <p className="text-[13px] text-[#4c4842] leading-relaxed">{r.description}</p>
+                </div>
+
+                <div className="flex items-center justify-between pt-3 border-t border-[#ded8ca]">
+                  <span className="font-mono-tech text-[11px] text-[#6e6a62]">
+                    {viewableCount} modules · scope: {r.dataScope}
+                  </span>
+                  <Button
+                    size="sm"
+                    variant={isActive ? 'outline' : 'primary'}
+                    disabled={isActive}
+                    onClick={() => {
+                      switchDemoRole(r.id);
+                      logAudit('roles', `Switched active RBAC preview to "${r.name}"`, `Scope: ${r.dataScope}`);
+                    }}
+                  >
+                    {isActive ? 'Active Role' : 'Switch Role'}
+                  </Button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </PermissionGuard>
   );

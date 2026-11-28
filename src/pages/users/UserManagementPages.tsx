@@ -132,7 +132,7 @@ export const MembersPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => toggleStatus(m, m.status === 'active' ? 'suspended' : 'active')}
-                      className="px-2 py-1 rounded text-[11px] font-semibold border border-[#ded8ca] hover:bg-[#f6f3ec] cursor-pointer"
+                      className="px-2 py-1 rounded text-[11px] font-semibold border border-[#ded8ca] hover:bg-[#e5dfd2]/70 cursor-pointer"
                     >
                       {m.status === 'active' ? 'Suspend' : 'Activate'}
                     </button>
@@ -218,7 +218,7 @@ export const MembersPage: React.FC = () => {
             <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
             <div>
               <label className="block text-[12.5px] font-medium mb-1">Initial Membership</label>
-              <select value={membership} onChange={(e) => setMembership(e.target.value as 'free' | 'basic' | 'premium')} className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]">
+              <select value={membership} onChange={(e) => setMembership(e.target.value as 'free' | 'basic' | 'premium')} className="w-full h-9 px-2.5 rounded-[10px] border border-[#ded8ca] text-[13px]">
                 <option value="free">Free</option>
                 <option value="basic">Basic</option>
                 <option value="premium">Premium</option>
@@ -350,7 +350,7 @@ export const AdministratorsPage: React.FC = () => {
             <Input label="Admin Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
             <div>
               <label className="block text-[12.5px] font-medium mb-1">Role</label>
-              <select value={roleId} onChange={(e) => setRoleId(e.target.value)} className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]">
+              <select value={roleId} onChange={(e) => setRoleId(e.target.value)} className="w-full h-9 px-2.5 rounded-[10px] border border-[#ded8ca] text-[13px]">
                 {roles.map((r) => (
                   <option key={r.id} value={r.id}>{r.name}</option>
                 ))}
@@ -477,7 +477,7 @@ export const RolesPermissionsPage: React.FC = () => {
                 </thead>
                 <tbody className="divide-y divide-[#ded8ca]">
                   {ALL_MODULES.map((mod) => (
-                    <tr key={mod} className="hover:bg-[#f6f3ec]">
+                    <tr key={mod} className="hover:bg-[#efebe1]/70">
                       <td className="py-2.5 px-4 font-medium capitalize text-[#141312]">
                         {mod.replace(/_/g, ' ')}
                       </td>

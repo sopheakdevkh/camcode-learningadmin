@@ -364,7 +364,7 @@ export const CoursesPage: React.FC = () => {
                 value={descEn}
                 onChange={(e) => setDescEn(e.target.value)}
                 required
-                className="w-full rounded-xl border border-[#ded8ca] p-2.5 text-[13px] outline-none focus:border-[#1c5b48]"
+                className="w-full rounded-[10px] border border-[#ded8ca] p-2.5 text-[13px] outline-none focus:border-[#1c5b48]"
               />
             </div>
 
@@ -374,7 +374,7 @@ export const CoursesPage: React.FC = () => {
                 <select
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
-                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-[10px] border border-[#ded8ca] text-[13px]"
                 >
                   {categories.map((cat) => (
                     <option key={cat.id} value={cat.id}>
@@ -388,7 +388,7 @@ export const CoursesPage: React.FC = () => {
                 <select
                   value={instructorId}
                   onChange={(e) => setInstructorId(e.target.value)}
-                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-[10px] border border-[#ded8ca] text-[13px]"
                 >
                   {instructors.map((inst) => (
                     <option key={inst.id} value={inst.id}>
@@ -402,7 +402,7 @@ export const CoursesPage: React.FC = () => {
                 <select
                   value={difficulty}
                   onChange={(e) => setDifficulty(e.target.value as DifficultyLevel)}
-                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-[10px] border border-[#ded8ca] text-[13px]"
                 >
                   <option value="beginner">Beginner</option>
                   <option value="intermediate">Intermediate</option>
@@ -418,7 +418,7 @@ export const CoursesPage: React.FC = () => {
                 <select
                   value={accessType}
                   onChange={(e) => setAccessType(e.target.value as AccessType)}
-                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-[10px] border border-[#ded8ca] text-[13px]"
                 >
                   <option value="free">Free</option>
                   <option value="paid">One-time Paid</option>
@@ -432,7 +432,7 @@ export const CoursesPage: React.FC = () => {
                 <select
                   value={status}
                   onChange={(e) => setStatus(e.target.value as CourseStatus)}
-                  className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]"
+                  className="w-full h-9 px-2.5 rounded-[10px] border border-[#ded8ca] text-[13px]"
                 >
                   <option value="draft">Draft</option>
                   <option value="in_review">In Review</option>
@@ -449,7 +449,7 @@ export const CoursesPage: React.FC = () => {
                   rows={3}
                   value={objectivesText}
                   onChange={(e) => setObjectivesText(e.target.value)}
-                  className="w-full rounded-xl border border-[#ded8ca] p-2.5 text-[13px]"
+                  className="w-full rounded-[10px] border border-[#ded8ca] p-2.5 text-[13px]"
                 />
               </div>
               <div>
@@ -458,7 +458,7 @@ export const CoursesPage: React.FC = () => {
                   rows={3}
                   value={requirementsText}
                   onChange={(e) => setRequirementsText(e.target.value)}
-                  className="w-full rounded-xl border border-[#ded8ca] p-2.5 text-[13px]"
+                  className="w-full rounded-[10px] border border-[#ded8ca] p-2.5 text-[13px]"
                 />
               </div>
             </div>

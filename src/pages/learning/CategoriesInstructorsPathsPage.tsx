@@ -174,7 +174,7 @@ export const CategoriesPage: React.FC = () => {
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-[12.5px] font-medium mb-1">Parent Category</label>
-                <select value={parentId} onChange={(e) => setParentId(e.target.value)} className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]">
+                <select value={parentId} onChange={(e) => setParentId(e.target.value)} className="w-full h-9 px-2.5 rounded-[10px] border border-[#ded8ca] text-[13px]">
                   <option value="">None (Top Level)</option>
                   {categories.filter((c) => c.id !== editing?.id).map((c) => (
                     <option key={c.id} value={c.id}>{c.name.en}</option>
@@ -482,7 +482,7 @@ export const InstructorsPage: React.FC = () => {
             <Input label="Expertise" value={expertise} onChange={(e) => setExpertise(e.target.value)} required />
             <div>
               <label className="block text-[12.5px] font-medium mb-1">Biography</label>
-              <textarea rows={3} value={bioEn} onChange={(e) => setBioEn(e.target.value)} className="w-full rounded-xl border border-[#ded8ca] p-2.5 text-[13px]" />
+              <textarea rows={3} value={bioEn} onChange={(e) => setBioEn(e.target.value)} className="w-full rounded-[10px] border border-[#ded8ca] p-2.5 text-[13px]" />
             </div>
             <div className="flex justify-end gap-2">
               <Button variant="outline" onClick={() => setModalOpen(false)}>Cancel</Button>
@@ -579,12 +579,12 @@ export const LearningPathsAdminPage: React.FC = () => {
               <p className="text-[12px] text-[#6e6a62]">Prerequisites: {p.prerequisiteLabel}</p>
 
               {/* Visual Roadmap Steps */}
-              <div className="p-3.5 rounded-xl bg-[#f6f3ec] border border-[#ded8ca] space-y-2">
+              <div className="p-3.5 rounded-xl bg-[#efebe1]/55 border border-[#ded8ca] space-y-2">
                 <p className="text-[11px] font-semibold uppercase text-[#6e6a62]">Structured Roadmap</p>
                 <div className="flex flex-wrap items-center gap-2">
                   {p.stepItems.map((step, i) => (
                     <React.Fragment key={i}>
-                      <span className="px-2.5 py-1 rounded-md bg-[#efebe1] border border-[#ded8ca] text-[12px] font-medium text-[#141312]">
+                      <span className="px-2.5 py-1 rounded-md bg-[#f6f3ec] border border-[#ded8ca] text-[12px] font-medium text-[#141312]">
                         {i + 1}. {step.label}
                       </span>
                       {i < p.stepItems.length - 1 && <ArrowRight className="h-3.5 w-3.5 text-[#6e6a62]" />}
@@ -606,7 +606,7 @@ export const LearningPathsAdminPage: React.FC = () => {
             </div>
             <div>
               <label className="block text-[12.5px] font-medium mb-1">Initial Course Step</label>
-              <select value={selectedCourseId} onChange={(e) => setSelectedCourseId(e.target.value)} className="w-full h-9 px-2.5 rounded-xl border border-[#ded8ca] text-[13px]">
+              <select value={selectedCourseId} onChange={(e) => setSelectedCourseId(e.target.value)} className="w-full h-9 px-2.5 rounded-[10px] border border-[#ded8ca] text-[13px]">
                 {courses.map((c) => (
                   <option key={c.id} value={c.id}>{c.title.en}</option>
                 ))}
